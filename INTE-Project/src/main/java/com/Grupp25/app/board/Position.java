@@ -4,6 +4,7 @@ public class Position {
     private int x;
     private int y;
     private BoardItem boardItem;
+    private Tile tile;
 
     public Position(int x, int y) {
         this.x = x;
@@ -38,6 +39,10 @@ public class Position {
      */
     public void setBoardItem(BoardItem boardItem) {
         this.boardItem = boardItem;
+    }
+
+    public Tile getTile() {
+        return tile;
     }
 
     @Override
