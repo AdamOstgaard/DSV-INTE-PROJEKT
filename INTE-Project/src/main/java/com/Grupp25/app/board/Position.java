@@ -1,8 +1,13 @@
 package com.Grupp25.app.board;
 
-class Position {
+public class Position {
     private int x;
     private int y;
+
+    public Position(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
 
     public int getX() {
         return x;
@@ -17,6 +22,6 @@ class Position {
     }
 
     public void setY(int value) {
-        x = value;
+        y = value;
     }
 }
