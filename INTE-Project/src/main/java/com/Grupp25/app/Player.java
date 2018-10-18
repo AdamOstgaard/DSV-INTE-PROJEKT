@@ -1,0 +1,23 @@
+package com.Grupp25.app;
+
+class Player extends Character {
+    public static final int INITIAL_HP = 100;
+    public static final int INITIAL_STRENGTH = 15;
+    public static final int INITIAL_DEFENSE = 10;
+    public static final int INITIAL_SPEED = 3;
+    public static final int INITIAL_Accuracy = 2;
+    public static final int INITIAL_LEVEL = 1;
+
+    public Player() {
+        super(INITIAL_HP, INITIAL_STRENGTH, INITIAL_DEFENSE, INITIAL_SPEED, INITIAL_Accuracy, INITIAL_LEVEL);
+    }
+
+    public void levelUp() {
+        this.setLevel(this.getLevel() + 1);
+    }
+
+    @Override
+    public void render() {
+
+    }
+}

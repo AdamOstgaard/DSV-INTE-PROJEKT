@@ -31,9 +31,4 @@ public class PositionTest extends TestCase {
         int y = pos.getY();
         assertTrue(y == 2);
     }
-
-    @org.junit.Test
-    public void dummyTest() {
-        assertTrue(true);
-    }
 }

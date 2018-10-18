@@ -30,7 +30,7 @@ public class Board {
         return positions.size();
     }
 
-    public Position getPosition(int x, int y) {
+    public Position getPosition(int x, int y) throws IllegalArgumentException {
         if (checkBoundries(x, y)) {
             return positions.get(new Position(x, y).hashCode());
         }
