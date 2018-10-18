@@ -1,40 +1,47 @@
 package com.Grupp25.app;
 
-public class Character {
+import com.Grupp25.app.board.*;
+
+public class Character extends BoardItem {
 
     private int hp, strength, defense, speed, accuracy, level;
 
     public Character(int hp, int strength, int defense, int speed, int accuracy, int level) {
 
-        this.hp=hp;
-        this.strength=strength;
-        this.defense=defense;
-        this.speed=speed;
-        this.accuracy=accuracy;
-        this.level=level;
+        this.hp = hp;
+        this.strength = strength;
+        this.defense = defense;
+        this.speed = speed;
+        this.accuracy = accuracy;
+        this.level = level;
     }
 
-    public int getHp(){
+    public int getHp() {
         return hp;
     }
 
-    public int getStrength(){
+    public int getStrength() {
         return strength;
     }
-    
-    public int getDefense(){
+
+    public int getDefense() {
         return defense;
     }
 
-    public int getSpeed(){
+    public int getSpeed() {
         return speed;
     }
 
-    public int getAccuracy(){
+    public int getAccuracy() {
         return accuracy;
     }
 
-    public int getLevel(){
+    public int getLevel() {
         return level;
     }
-} 
+
+    @Override
+    public void render() {
+
+    }
+}
