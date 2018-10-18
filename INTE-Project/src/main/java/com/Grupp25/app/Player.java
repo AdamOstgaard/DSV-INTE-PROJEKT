@@ -1,5 +1,7 @@
 package com.Grupp25.app;
 
+import com.Grupp25.app.gameengine.GameEngine;
+
 class Player extends Character {
     public static final int INITIAL_HP = 100;
     public static final int INITIAL_STRENGTH = 15;
@@ -17,7 +19,7 @@ class Player extends Character {
     }
 
     @Override
-    public void render() {
+    public void render(GameEngine engine) {
 
     }
 }

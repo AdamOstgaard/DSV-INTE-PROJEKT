@@ -43,5 +43,4 @@ public class CharacterTest {
     public void getSpeedTest() {
         assertEquals(3, aCharacter.getSpeed());
     }
-
 }
