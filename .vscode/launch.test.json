@@ -1,0 +1,30 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "INTE-Project",
+                "projectName": "INTE-Project",
+                "workingDirectory": "c:\\Users\\Sebastian Kappelin\\Desktop\\code\\DSV-INTE-PROJEKT\\INTE-Project",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "INTE-Project",
+                "projectName": "INTE-Project",
+                "workingDirectory": "c:\\Users\\Sebastian Kappelin\\Desktop\\code\\DSV-INTE-PROJEKT\\INTE-Project",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}
