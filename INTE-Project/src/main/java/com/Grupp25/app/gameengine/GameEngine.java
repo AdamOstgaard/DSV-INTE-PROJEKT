@@ -1,5 +1,6 @@
 package com.Grupp25.app.gameengine;
 
+import com.Grupp25.app.Direction;
 import com.Grupp25.app.board.Board;
 import com.Grupp25.app.board.BoardItem;
 import com.Grupp25.app.characters.Player;
@@ -7,6 +8,7 @@ import com.Grupp25.app.characters.Player;
 public class GameEngine {
     Board board;
     BoardItemManager boardItemManager;
+    Player player;
 
     public GameEngine(Board board) {
         this.boardItemManager = new BoardItemManager(board);
@@ -34,10 +36,24 @@ public class GameEngine {
     }
 
     private void addPlayer() {
-        this.boardItemManager.addItem(5, 5, new Player());
+        player = new Player();
+        this.boardItemManager.addItem(5, 5, player);
     }
 
     public void keyInput(Character input) {
-
+        switch (input.charValue()) {
+        case 'a':
+            board.moveItem(player, Direction.west);
+            break;
+        case 'w':
+            board.moveItem(player, Direction.north);
+            break;
+        case 's':
+            board.moveItem(player, Direction.south);
+            break;
+        case 'd':
+            board.moveItem(player, Direction.east);
+            break;
+        }
     }
 }
