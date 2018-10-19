@@ -6,6 +6,7 @@ import java.awt.Dimension;
 import javax.swing.JLabel;
 
 public class TileGraphics extends JLabel {
+    public static final long serialVersionUID = 1L;
     public TileGraphics(Color color) {
         this.setBackground(color);
         this.setOpaque(true);
