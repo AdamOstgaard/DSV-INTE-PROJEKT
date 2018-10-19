@@ -22,4 +22,22 @@ public class BoardTest extends TestCase {
         assertTrue(testBoard.getPositionsSize() == 4);
     }
 
+    @org.junit.Test
+    public void testGetExistingPosition(){
+        Board testBoard = new Board(20, 25);
+        assertTrue(testBoard.getPosition(10, 10) != null);
+    }
+
+    @org.junit.Test
+    public void testNegativePosition(){
+        Board testBoard = new Board(15, 10);
+        assertNull(testBoard.getPosition(-1, -1));
+    }
+
+    @org.junit.Test
+    public void testOutOfBoundsPosition(){
+        Board testBoard = new Board(30, 30);
+        assertNull(testBoard.getPosition(31, 30));
+    }
+
 }

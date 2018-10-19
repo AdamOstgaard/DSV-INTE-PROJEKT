@@ -6,7 +6,7 @@ import com.Grupp25.app.characters.Player;
 
 import org.junit.Test;
 
-class PlayerTest {
+public class PlayerTest {
     @Test
     public void testLevelUp() {
         Player player = new Player();
