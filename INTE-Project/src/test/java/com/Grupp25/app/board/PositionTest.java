@@ -21,17 +21,17 @@ public class PositionTest extends TestCase {
 
     @org.junit.Test
     public void testGetAndSetX() {
-        Position pos = new Position(1, 1);
-        pos.setX(2);
-        int x = pos.getX();
+        Position position = new Position(1, 1);
+        position.setX(2);
+        int x = position.getX();
         assertTrue(x == 2);
     }
 
     @org.junit.Test
     public void testGetAndSetY() {
-        Position pos = new Position(1, 1);
-        pos.setY(2);
-        int y = pos.getY();
+        Position position = new Position(1, 1);
+        position.setY(2);
+        int y = position.getY();
         assertTrue(y == 2);
     }
 
@@ -47,13 +47,13 @@ public class PositionTest extends TestCase {
 
     @org.junit.Test(expected = Exception.class)
     public void testSetNegativeX() {
-        Position pos = new Position(4, 4);
-        pos.setX(-2);
+        Position position = new Position(4, 4);
+        position.setX(-2);
     }
 
     @org.junit.Test(expected = Exception.class)
     public void testSetNegativeY() {
-        Position pos = new Position(10, 5);
-        pos.setY(-2);
+        Position position = new Position(10, 5);
+        position.setY(-2);
     }
 }
