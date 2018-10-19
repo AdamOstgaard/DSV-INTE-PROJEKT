@@ -12,6 +12,7 @@ public class GameEngine {
         this.boardItemManager = new BoardItemManager(board);
         this.board = board;
         addPlayer();
+        board.initialize(this);
     }
 
     public void tick() {
@@ -34,5 +35,9 @@ public class GameEngine {
 
     private void addPlayer() {
         this.boardItemManager.addItem(5, 5, new Player());
+    }
+
+    public void keyInput(Character input) {
+
     }
 }
