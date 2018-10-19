@@ -1,5 +1,6 @@
 package com.Grupp25.app.board;
 
+import com.Grupp25.app.gameengine.*;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
@@ -7,17 +8,20 @@ import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.util.HashMap;
 import java.util.Random;
+import java.awt.event.*;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
-public class Board extends JFrame {
+public class Board extends JFrame implements KeyListener {
+    private GameEngine gameEngine;
     private HashMap<Integer, Position> positions;
     private int width;
     private int height;
     private Random random;
     private JLayeredPane layeredPane;
+    public static final long serialVersionUID = 1L;
     public static final int DEFAULT_TILE_SIZE = 30;
 
     public Board() {
@@ -41,6 +45,10 @@ public class Board extends JFrame {
 
         generatePositions();
         generateTiles();
+    }
+
+    public void initialize(GameEngine g) {
+        this.gameEngine = g;
     }
 
     private void generatePositions() {
@@ -103,5 +111,22 @@ public class Board extends JFrame {
 
     private Point2D getAbsoluteCoordinates(Position p) {
         return new Point(p.getX() * DEFAULT_TILE_SIZE, p.getY() * DEFAULT_TILE_SIZE);
+    }
+
+    // Listeners
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        gameEngine.keyInput(e.getKeyChar());
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+
     }
 }
