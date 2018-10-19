@@ -7,6 +7,7 @@ public class GameEngine {
 
     public GameEngine(Board board) {
         this.board = board;
+        board.initialize(this);
     }
 
     public void tick() {
@@ -21,5 +22,9 @@ public class GameEngine {
             } catch (Exception e) {
             }
         }
+    }
+
+    public void keyInput(Character input) {
+
     }
 }
