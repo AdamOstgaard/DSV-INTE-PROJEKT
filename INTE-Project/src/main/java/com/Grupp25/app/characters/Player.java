@@ -1,8 +1,11 @@
-package com.Grupp25.app;
+package com.Grupp25.app.characters;
+
+import javax.swing.JComponent;
+import javax.swing.JLabel;
 
 import com.Grupp25.app.gameengine.GameEngine;
 
-class Player extends Character {
+public class Player extends Character {
     public static final int INITIAL_HP = 100;
     public static final int INITIAL_STRENGTH = 15;
     public static final int INITIAL_DEFENSE = 10;
@@ -12,6 +15,7 @@ class Player extends Character {
 
     public Player() {
         super(INITIAL_HP, INITIAL_STRENGTH, INITIAL_DEFENSE, INITIAL_SPEED, INITIAL_Accuracy, INITIAL_LEVEL);
+        this.setGraphics(new PlayerGraphics());
     }
 
     public void levelUp() {
@@ -21,5 +25,15 @@ class Player extends Character {
     @Override
     public void render(GameEngine engine) {
 
+    }
+
+    @Override
+    public JLabel getGraphics() {
+        return this.graphics;
+    }
+
+    @Override
+    public void setGraphics(JLabel value) {
+        this.graphics = value;
     }
 }
