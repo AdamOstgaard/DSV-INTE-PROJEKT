@@ -3,12 +3,12 @@ package com.Grupp25.app.board;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.geom.Point2D;
 import java.util.HashMap;
 import java.util.Random;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 
 public class Board extends JFrame {
     private HashMap<Integer, Position> positions;
@@ -28,10 +28,11 @@ public class Board extends JFrame {
         positions = new HashMap<Integer, Position>();
         random = new Random();
 
-        setLayout(null);
+        this.setLayout(null);
         this.setVisible(true);
         this.setMinimumSize(new Dimension(DEFAULT_TILE_SIZE * width, DEFAULT_TILE_SIZE * height));
         this.setPreferredSize(new Dimension(DEFAULT_TILE_SIZE * width, DEFAULT_TILE_SIZE * height));
+
         generatePositions();
         generateTiles();
     }
@@ -53,15 +54,29 @@ public class Board extends JFrame {
 
             Tile t = new Tile(1, false, new TileGraphics(new Color(0, 200, 0)));
             p.setTile(t);
-            TileGraphics tileGraphics = p.getTile().getGraphics();
-            tileGraphics.setBounds((int) getAbsoluteCoordinates(p).getX(), (int) getAbsoluteCoordinates(p).getY(),
-                    DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE);
 
-            this.add(tileGraphics);
-            tileGraphics.setToolTipText("test");
-            tileGraphics.setVisible(true);
+            TileGraphics tileGraphics = p.getTile().getGraphics();
+            addGraphics(p, tileGraphics);
         });
         repaint();
+    }
+
+    public void addItem(int x, int y, BoardItem item) {
+        Position pos = getPosition(x, y);
+        if (pos.getBoardItem() == null) {
+            pos.setBoardItem(item);
+            addGraphics(pos, item.getGraphics());
+        }
+        repaint();
+    }
+
+    private void addGraphics(Position p, JLabel graphics) {
+        graphics.setBounds((int) getAbsoluteCoordinates(p).getX(), (int) getAbsoluteCoordinates(p).getY(),
+                DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE);
+
+        this.add(graphics);
+        graphics.setToolTipText("test");
+        graphics.setVisible(true);
     }
 
     public int getPositionsSize() {

@@ -1,4 +1,4 @@
-package com.Grupp25.app;
+package com.Grupp25.app.characters;
 
 import com.Grupp25.app.board.*;
 

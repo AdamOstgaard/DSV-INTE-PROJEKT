@@ -2,6 +2,8 @@ package com.Grupp25.app;
 
 import static org.junit.Assert.*;
 
+import com.Grupp25.app.characters.Player;
+
 import org.junit.Test;
 
 public class PlayerTest {
