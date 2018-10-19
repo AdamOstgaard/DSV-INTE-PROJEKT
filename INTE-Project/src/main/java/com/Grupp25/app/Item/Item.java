@@ -1,4 +1,4 @@
-package com.Grupp25.app.item;
+package com.Grupp25.app.Item;
 
 import javax.swing.JLabel;
 
