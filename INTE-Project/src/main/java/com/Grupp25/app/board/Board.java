@@ -15,7 +15,7 @@ public class Board extends JFrame {
     private int width;
     private int height;
     private Random random;
-    public static final int DEFAULT_TILE_SIZE = 50;
+    public static final int DEFAULT_TILE_SIZE = 30;
 
     public Board() {
         this(25, 25);
