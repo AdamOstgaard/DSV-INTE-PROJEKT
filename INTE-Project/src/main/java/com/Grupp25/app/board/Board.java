@@ -2,6 +2,7 @@ package com.Grupp25.app.board;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.geom.Point2D;
 import java.util.HashMap;
@@ -9,12 +10,14 @@ import java.util.Random;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JLayeredPane;
 
 public class Board extends JFrame {
     private HashMap<Integer, Position> positions;
     private int width;
     private int height;
     private Random random;
+    private JLayeredPane layeredPane;
     public static final int DEFAULT_TILE_SIZE = 30;
 
     public Board() {
@@ -27,9 +30,12 @@ public class Board extends JFrame {
 
         positions = new HashMap<Integer, Position>();
         random = new Random();
+        layeredPane = new JLayeredPane();
+        layeredPane.setLayout(null);
 
-        this.setLayout(null);
+        this.setLayout(new GridLayout(1, 1));
         this.setVisible(true);
+        this.add(layeredPane);
         this.setMinimumSize(new Dimension(DEFAULT_TILE_SIZE * width, DEFAULT_TILE_SIZE * height));
         this.setPreferredSize(new Dimension(DEFAULT_TILE_SIZE * width, DEFAULT_TILE_SIZE * height));
 
@@ -56,7 +62,7 @@ public class Board extends JFrame {
             p.setTile(t);
 
             TileGraphics tileGraphics = p.getTile().getGraphics();
-            addGraphics(p, tileGraphics);
+            addGraphics(p, tileGraphics, 1);
         });
         repaint();
     }
@@ -65,16 +71,16 @@ public class Board extends JFrame {
         Position pos = getPosition(x, y);
         if (pos.getBoardItem() == null) {
             pos.setBoardItem(item);
-            addGraphics(pos, item.getGraphics());
+            addGraphics(pos, item.getGraphics(), 4);
         }
         repaint();
     }
 
-    private void addGraphics(Position p, JLabel graphics) {
+    private void addGraphics(Position p, JLabel graphics, int zIndex) {
         graphics.setBounds((int) getAbsoluteCoordinates(p).getX(), (int) getAbsoluteCoordinates(p).getY(),
                 DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE);
 
-        this.add(graphics);
+        layeredPane.add(graphics, zIndex);
         graphics.setToolTipText("test");
         graphics.setVisible(true);
     }
