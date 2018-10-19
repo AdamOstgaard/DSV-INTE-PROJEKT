@@ -42,6 +42,7 @@ public class Board extends JFrame implements KeyListener {
         this.add(layeredPane);
         this.setMinimumSize(new Dimension(DEFAULT_TILE_SIZE * width, DEFAULT_TILE_SIZE * height));
         this.setPreferredSize(new Dimension(DEFAULT_TILE_SIZE * width, DEFAULT_TILE_SIZE * height));
+        addKeyListener(this);
 
         generatePositions();
         generateTiles();
