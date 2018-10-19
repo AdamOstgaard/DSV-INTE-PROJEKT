@@ -1,7 +1,5 @@
 package com.Grupp25.app.board;
 
-import org.junit.rules.ExpectedException;
-
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
