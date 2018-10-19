@@ -1,8 +1,5 @@
 package com.Grupp25.app.board;
 
-import java.awt.Color;
-import java.awt.Graphics;
-
 public class Tile {
     private final double speedMultiplier;
     private final boolean blocking;

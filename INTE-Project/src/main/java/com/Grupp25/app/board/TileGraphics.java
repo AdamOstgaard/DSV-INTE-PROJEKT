@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 public class TileGraphics extends JLabel {
     public TileGraphics(Color color) {
         this.setBackground(color);
+        this.setOpaque(true);
         this.setSize(Board.DEFAULT_TILE_SIZE, Board.DEFAULT_TILE_SIZE);
         setMinimumSize(new Dimension(Board.DEFAULT_TILE_SIZE, Board.DEFAULT_TILE_SIZE));
         setPreferredSize(new Dimension(Board.DEFAULT_TILE_SIZE, Board.DEFAULT_TILE_SIZE));
