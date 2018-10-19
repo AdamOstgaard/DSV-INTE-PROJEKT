@@ -45,6 +45,10 @@ public class Position {
         return tile;
     }
 
+    public void setTile(Tile value) {
+        this.tile = value;
+    }
+
     @Override
     public int hashCode() {
         return x * 7 + y * 13;
