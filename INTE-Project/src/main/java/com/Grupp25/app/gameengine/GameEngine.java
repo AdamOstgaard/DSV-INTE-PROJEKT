@@ -7,6 +7,7 @@ import com.Grupp25.app.characters.Player;
 public class GameEngine {
     Board board;
     BoardItemManager boardItemManager;
+    Player player;
 
     public GameEngine(Board board) {
         this.boardItemManager = new BoardItemManager(board);
@@ -34,10 +35,14 @@ public class GameEngine {
     }
 
     private void addPlayer() {
-        this.boardItemManager.addItem(5, 5, new Player());
+        player = new Player();
+        this.boardItemManager.addItem(5, 5, player);
     }
 
     public void keyInput(Character input) {
-
+        switch (input) {
+        case 'a':
+            board.moveItemWest(player);
+        }
     }
 }

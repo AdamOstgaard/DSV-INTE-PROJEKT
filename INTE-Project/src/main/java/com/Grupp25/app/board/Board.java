@@ -93,6 +93,17 @@ public class Board extends JFrame implements KeyListener {
         graphics.setVisible(true);
     }
 
+    public void moveItemWest(BoardItem item) {
+        positions.values().forEach(p -> {
+            if (p.getBoardItem() != null && p.getBoardItem() == item) {
+                p.setBoardItem(null);
+                Position nextPosition = getPosition(p.getX() - 1, p.getY());
+                nextPosition.setBoardItem(item);
+                addGraphics(p, item.getGraphics(), 4);
+            }
+        });
+    }
+
     public int getPositionsSize() {
         return positions.size();
     }
