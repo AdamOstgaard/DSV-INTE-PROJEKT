@@ -1,5 +1,8 @@
 package com.Grupp25.app;
 
+import com.Grupp25.app.board.Board;
+import com.Grupp25.app.gameengine.GameEngine;
+
 /**
  * Hello world!
  *
@@ -7,7 +10,7 @@ package com.Grupp25.app;
 
 public class App {
     public static void main(String[] args) {
-        System.out.println("Hello World! This is app!");
-        System.out.println("test");
+        Board board = new Board();
+        GameEngine gameEngine = new GameEngine(board);
     }
 }

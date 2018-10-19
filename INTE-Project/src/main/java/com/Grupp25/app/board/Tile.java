@@ -1,13 +1,17 @@
 package com.Grupp25.app.board;
 
-public enum Tile {
-    grass(1.0, false);
+import java.awt.Color;
+import java.awt.Graphics;
+
+public class Tile {
     private final double speedMultiplier;
     private final boolean blocking;
+    private final TileGraphics graphics;
 
-    Tile(double speedMultiplier, boolean blocking) {
+    Tile(double speedMultiplier, boolean blocking, TileGraphics graphics) {
         this.speedMultiplier = speedMultiplier;
         this.blocking = blocking;
+        this.graphics = graphics;
     }
 
     /**
@@ -20,4 +24,9 @@ public enum Tile {
     public boolean getBlocking() {
         return blocking;
     }
+
+    public TileGraphics getGraphics() {
+        return this.graphics;
+    }
+
 }
