@@ -1,5 +1,6 @@
 package com.Grupp25.app.board;
 
+import com.Grupp25.app.Direction;
 import com.Grupp25.app.gameengine.*;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -94,15 +95,18 @@ public class Board extends JFrame implements KeyListener {
         graphics.setVisible(true);
     }
 
-    public void moveItemWest(BoardItem item) {
-        positions.values().forEach(p -> {
+    public void moveItem(BoardItem item, Direction direction) {
+        for (Position p : positions.values()) {
             if (p.getBoardItem() != null && p.getBoardItem() == item) {
                 p.setBoardItem(null);
-                Position nextPosition = getPosition(p.getX() - 1, p.getY());
-                nextPosition.setBoardItem(item);
-                addGraphics(p, item.getGraphics(), 4);
+                Position nextPosition = getNextPosition(direction, p);
+                if (nextPosition != null) {
+                    nextPosition.setBoardItem(item);
+                    addGraphics(p, item.getGraphics(), 4);
+                    return;
+                }
             }
-        });
+        }
     }
 
     public int getPositionsSize() {
@@ -129,16 +133,30 @@ public class Board extends JFrame implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        gameEngine.keyInput(e.getKeyChar());
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-
+        gameEngine.keyInput(e.getKeyChar());
     }
 
     @Override
     public void keyTyped(KeyEvent e) {
 
+    }
+
+    private Position getNextPosition(Direction direction, Position p) {
+        switch (direction) {
+        case east:
+            return getPosition(p.getX() + 1, p.getY());
+        case west:
+            return getPosition(p.getX() - 1, p.getY());
+        case north:
+            return getPosition(p.getX(), p.getY() - 1);
+        case south:
+            return getPosition(p.getX(), p.getY() + 1);
+        default:
+            return null;
+        }
     }
 }

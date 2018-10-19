@@ -1,5 +1,6 @@
 package com.Grupp25.app.gameengine;
 
+import com.Grupp25.app.Direction;
 import com.Grupp25.app.board.Board;
 import com.Grupp25.app.board.BoardItem;
 import com.Grupp25.app.characters.Player;
@@ -40,9 +41,19 @@ public class GameEngine {
     }
 
     public void keyInput(Character input) {
-        switch (input) {
+        switch (input.charValue()) {
         case 'a':
-            board.moveItemWest(player);
+            board.moveItem(player, Direction.west);
+            break;
+        case 'w':
+            board.moveItem(player, Direction.north);
+            break;
+        case 's':
+            board.moveItem(player, Direction.south);
+            break;
+        case 'd':
+            board.moveItem(player, Direction.east);
+            break;
         }
     }
 }
