@@ -3,12 +3,24 @@ package com.Grupp25.app.board;
 import java.awt.Color;
 import java.awt.Dimension;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 public class TileGraphics extends JLabel {
     public static final long serialVersionUID = 1L;
+
+
+
     public TileGraphics(Color color) {
         this.setBackground(color);
+        setBoundsAndVisibility();
+    }
+    public TileGraphics(ImageIcon icon) {
+        this.setIcon(icon);
+        setBoundsAndVisibility();
+    }
+
+    public void setBoundsAndVisibility(){
         this.setOpaque(true);
         this.setSize(Board.DEFAULT_TILE_SIZE, Board.DEFAULT_TILE_SIZE);
         setMinimumSize(new Dimension(Board.DEFAULT_TILE_SIZE, Board.DEFAULT_TILE_SIZE));

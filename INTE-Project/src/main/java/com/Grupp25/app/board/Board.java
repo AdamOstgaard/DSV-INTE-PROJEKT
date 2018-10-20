@@ -10,7 +10,7 @@ import java.awt.geom.Point2D;
 import java.util.HashMap;
 import java.util.Random;
 import java.awt.event.*;
-
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
@@ -24,6 +24,8 @@ public class Board extends JFrame implements KeyListener {
     private JLayeredPane layeredPane;
     public static final long serialVersionUID = 1L;
     public static final int DEFAULT_TILE_SIZE = 30;
+
+    ImageIcon tile_grass = new ImageIcon("gfx\tile_grass.png");
 
     public Board() {
         this(25, 25);
