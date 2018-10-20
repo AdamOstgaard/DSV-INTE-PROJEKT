@@ -1,8 +1,8 @@
 package com.Grupp25.app;
 
-import static org.junit.Assert.*;
-
 import com.Grupp25.app.characters.Player;
+
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 
