@@ -53,4 +53,8 @@ public class Position {
     public int hashCode() {
         return x * 7 + (x * 7 * y * 131);
     }
+
+    public float getDistanceTo(Position p) {
+        return Math.abs(this.getX() - p.getX()) + Math.abs(this.getY() - p.getY());
+    }
 }

@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 
 import com.Grupp25.app.Direction;
 import com.Grupp25.app.board.Board;
+import com.Grupp25.app.board.Position;
 import com.Grupp25.app.gameengine.GameEngine;
 
 public class Enemy extends Character {
@@ -31,7 +32,27 @@ public class Enemy extends Character {
     @Override
     public void move(GameEngine engine) {
         Board board = engine.getBoard();
+        Position playerPos = board.getItemPosition(engine.getPlayer());
+        float distance = board.getItemPosition(this).getDistanceTo(playerPos);
 
+        if (distance < 10) {
+            board.moveItem(this, getClosestDirection(playerPos, board));
+        } else {
+            randomMove(board);
+        }
+    }
+
+    @Override
+    public JLabel getGraphics() {
+        return this.graphics;
+    }
+
+    @Override
+    public void setGraphics(JLabel value) {
+        this.graphics = value;
+    }
+
+    private void randomMove(Board board) {
         int r = random.nextInt(5);
 
         switch (r) {
@@ -50,13 +71,20 @@ public class Enemy extends Character {
         }
     }
 
-    @Override
-    public JLabel getGraphics() {
-        return this.graphics;
-    }
+    private Direction getClosestDirection(Position playerPosition, Board board) {
+        Position ownPositinon = board.getItemPosition(this);
 
-    @Override
-    public void setGraphics(JLabel value) {
-        this.graphics = value;
+        if ((ownPositinon.getX() - playerPosition.getX()) > 0) {
+            return Direction.west;
+        }
+
+        if ((ownPositinon.getX() - playerPosition.getX()) < 0) {
+            return Direction.east;
+        }
+
+        if ((ownPositinon.getY() - playerPosition.getY()) > 0) {
+            return Direction.north;
+        }
+        return Direction.south;
     }
 }

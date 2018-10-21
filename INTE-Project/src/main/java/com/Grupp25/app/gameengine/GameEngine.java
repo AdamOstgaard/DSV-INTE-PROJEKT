@@ -51,6 +51,10 @@ public class GameEngine {
         this.boardItemManager.addItem(5, 5, player);
     }
 
+    public Player getPlayer(){
+        return this.player;
+    }
+
     private void addEnemy() {
         this.boardItemManager.addItem(10, 10, new Enemy());
     }
