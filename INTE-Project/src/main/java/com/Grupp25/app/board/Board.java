@@ -14,6 +14,7 @@ import java.awt.event.*;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.SwingUtilities;
 
 public class Board extends JFrame implements KeyListener {
     private GameEngine gameEngine;
@@ -102,7 +103,7 @@ public class Board extends JFrame implements KeyListener {
                 Position nextPosition = getNextPosition(direction, p);
                 if (nextPosition != null) {
                     nextPosition.setBoardItem(item);
-                    addGraphics(p, item.getGraphics(), 4);
+                    addGraphics(nextPosition, item.getGraphics(), 4);
                     return;
                 }
             }
