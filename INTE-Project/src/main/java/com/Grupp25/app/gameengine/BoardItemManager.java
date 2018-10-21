@@ -32,7 +32,7 @@ public class BoardItemManager {
 
     public void doTick(GameEngine engine) {
         for (BoardItem item : items) {
-            item.render(engine);
+            item.move(engine);
         }
     }
 }
