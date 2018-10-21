@@ -29,7 +29,7 @@ public class Item extends BoardItem {
     }
 
     @Override
-    public void render(GameEngine engine) {
+    public void move(GameEngine engine) {
 
     }
 

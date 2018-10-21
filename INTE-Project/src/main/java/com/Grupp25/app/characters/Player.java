@@ -1,6 +1,5 @@
 package com.Grupp25.app.characters;
 
-import javax.swing.JComponent;
 import javax.swing.JLabel;
 
 import com.Grupp25.app.gameengine.GameEngine;
@@ -23,7 +22,7 @@ public class Player extends Character {
     }
 
     @Override
-    public void render(GameEngine engine) {
+    public void move(GameEngine engine) {
 
     }
 

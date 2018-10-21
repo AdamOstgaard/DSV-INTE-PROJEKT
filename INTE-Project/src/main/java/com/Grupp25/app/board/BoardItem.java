@@ -5,7 +5,7 @@ import javax.swing.JLabel;
 import com.Grupp25.app.gameengine.GameEngine;
 
 public abstract class BoardItem {
-    public abstract void render(GameEngine engine);
+    public abstract void move(GameEngine engine);
 
     protected JLabel graphics;
 
