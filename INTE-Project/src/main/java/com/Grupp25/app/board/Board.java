@@ -122,6 +122,12 @@ public class Board extends JFrame implements KeyListener {
         return positions.size();
     }
 
+    public BoardItem getItemAt(int x, int y){
+        BoardItem item;
+        item = getPosition(x, y).getBoardItem();
+        return item;
+    }
+
     public Position getPosition(int x, int y) throws IllegalArgumentException {
         if (checkBoundries(x, y)) {
             return positions.get(new Position(x, y).hashCode());
@@ -154,7 +160,7 @@ public class Board extends JFrame implements KeyListener {
 
     }
 
-    private Position getNextPosition(Direction direction, Position p) {
+    public Position getNextPosition(Direction direction, Position p) {
         switch (direction) {
         case east:
             return getPosition(p.getX() + 1, p.getY());
