@@ -56,7 +56,7 @@ public class GameEngine {
     }
 
     private void addEnemy() {
-        this.boardItemManager.addItem(10, 10, new Enemy());
+        this.boardItemManager.addItem(1, 5, new Enemy());
     }
 
     public void keyInput(Character input) {
