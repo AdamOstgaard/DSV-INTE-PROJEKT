@@ -1,6 +1,9 @@
 package com.Grupp25.app.item;
 
+import com.Grupp25.app.characters.Character;
+
 public interface Consumable {
 
-    public void Consume();
+    public void consume(Character character);
 }
+
