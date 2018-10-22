@@ -5,17 +5,17 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ConsumableTest {
+public class PotionTest {
 
-    Consumable consumable;
+    Potion potion;
 
     @Before
     public void setUp() {
-        consumable = new Consumable(50);
+        potion = new Potion(50);
     }
 
     @Test
     public void getHealingPower() {
-        assertEquals(50, consumable.getHealingPower());
+        assertEquals(50, potion.getHealingPower());
     }
 }
