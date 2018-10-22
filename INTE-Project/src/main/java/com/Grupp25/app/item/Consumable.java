@@ -1,15 +1,6 @@
 package com.Grupp25.app.item;
 
-public class Consumable extends Item {
+public interface Consumable {
 
-    private int healingPower;
-
-    public Consumable(int healingPower) {
-        this.healingPower = healingPower;
-    }
-
-    public int getHealingPower() {
-        return healingPower;
-    }
-
+    public void Consume();
 }
