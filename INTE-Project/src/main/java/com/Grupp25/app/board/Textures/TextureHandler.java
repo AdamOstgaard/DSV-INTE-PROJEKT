@@ -13,7 +13,7 @@ public class TextureHandler {
     private static HashMap<String, Image> textures;
 
     public TextureHandler() {
-
+        textures = new HashMap();
     }
 
     public Image getGrassTexture() {
