@@ -1,6 +1,7 @@
 package com.Grupp25.app.board;
 
 import com.Grupp25.app.Direction;
+import com.Grupp25.app.board.Textures.TextureHandler;
 import com.Grupp25.app.gameengine.*;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -64,12 +65,13 @@ public class Board extends JFrame implements KeyListener {
     }
 
     private void generateTiles() {
+        TextureHandler textureHandler = new TextureHandler();
         positions.values().forEach(p -> {
             if (random.nextBoolean()) {
                 return;
             }
 
-            Tile t = new Tile(1, false, new TileGraphics(new Color(0, 200, 0)));
+            Tile t = new Tile(1, false, new TileGraphics(new Color(0, 200, 0), textureHandler.getGrassTexture()));
             p.setTile(t);
 
             TileGraphics tileGraphics = p.getTile().getGraphics();
