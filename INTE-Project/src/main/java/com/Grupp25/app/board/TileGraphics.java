@@ -5,23 +5,20 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class TileGraphics extends JLabel {
     public static final long serialVersionUID = 1L;
+    private static Image grassTexture;
     private Image backgroundImage;
 
-    public TileGraphics(Color color) {
-        try {
-            URL url = getClass().getResource("tile_grass.png");
-            File file = new File(url.getPath());
-            backgroundImage = ImageIO.read(file);
-        } catch (Exception e) {
-
-        }
+    public TileGraphics(Color color, Image texture) {
+        this.backgroundImage = texture;
         this.setBackground(color);
         this.setOpaque(true);
         this.setSize(Board.DEFAULT_TILE_SIZE, Board.DEFAULT_TILE_SIZE);
