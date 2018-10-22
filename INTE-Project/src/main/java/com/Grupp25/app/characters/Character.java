@@ -23,9 +23,7 @@ public abstract class Character extends BoardItem {
     /**
      * @param hp the hp to set
      */
-    protected void setHp(int hp) {
-        this.hp = hp;
-    }
+    public abstract void setHp(int hp);
 
     public int getStrength() {
         return strength;
