@@ -51,7 +51,7 @@ public class GameEngine {
         this.boardItemManager.addItem(5, 5, player);
     }
 
-    public Player getPlayer(){
+    public Player getPlayer() {
         return this.player;
     }
 
@@ -60,17 +60,34 @@ public class GameEngine {
     }
 
     public void keyInput(Character input) {
+
         switch (input.charValue()) {
         case 'a':
+            if (player.getDirection() != Direction.west) {
+                player.setDirection(Direction.west);
+                return;
+            }
             board.moveItem(player, Direction.west);
             break;
         case 'w':
+            if (player.getDirection() != Direction.north) {
+                player.setDirection(Direction.north);
+                return;
+            }
             board.moveItem(player, Direction.north);
             break;
         case 's':
+            if (player.getDirection() != Direction.south) {
+                player.setDirection(Direction.south);
+                return;
+            }
             board.moveItem(player, Direction.south);
             break;
         case 'd':
+            if (player.getDirection() != Direction.east) {
+                player.setDirection(Direction.east);
+                return;
+            }
             board.moveItem(player, Direction.east);
             break;
         }
