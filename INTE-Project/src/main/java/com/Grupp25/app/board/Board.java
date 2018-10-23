@@ -100,9 +100,9 @@ public class Board extends JFrame implements KeyListener {
 
     public void moveItem(BoardItem item, Direction direction) {
         Position p = getItemPosition(item);
-        p.setBoardItem(null);
-        Position nextPosition = getNextPosition(direction, p);
-        if (nextPosition != null) {
+        Position nextPosition = getNextPosition(direction, p);            
+        if (nextPosition != null && nextPosition.getBoardItem() == null) {
+            p.setBoardItem(null);
             nextPosition.setBoardItem(item);
             addGraphics(nextPosition, item.getGraphics(), 4);
             return;
