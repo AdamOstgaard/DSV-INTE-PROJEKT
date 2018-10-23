@@ -10,6 +10,7 @@ import com.Grupp25.app.board.Board;
 import com.Grupp25.app.board.BoardItem;
 import com.Grupp25.app.characters.Enemy;
 import com.Grupp25.app.characters.Player;
+import com.Grupp25.app.board.Position;
 
 public class GameEngine {
     private Board board;
@@ -20,8 +21,10 @@ public class GameEngine {
     public GameEngine(Board board) {
         this.boardItemManager = new BoardItemManager(board);
         this.board = board;
-        addPlayer();
-        addEnemy();
+        player = new Player();
+        addPlayer(new Position(5, 5), player);
+        addEnemy(new Position(1, 5), new Enemy());
+        addEnemy(new Position(6, 5), new Enemy());
         board.initialize(this);
         startGame();
     }
@@ -46,17 +49,16 @@ public class GameEngine {
         timer.start();
     }
 
-    private void addPlayer() {
-        player = new Player();
-        this.boardItemManager.addItem(5, 5, player);
+    public void addPlayer(Position pos, Player player) {
+        this.boardItemManager.addItem(pos.getX(), pos.getY(), player);
     }
 
     public Player getPlayer() {
         return this.player;
     }
 
-    private void addEnemy() {
-        this.boardItemManager.addItem(1, 5, new Enemy());
+    public void addEnemy(Position pos, Enemy enemy) {
+        this.boardItemManager.addItem(pos.getX(), pos.getY(), new Enemy());
     }
 
     public void keyInput(Character input) {
@@ -89,6 +91,12 @@ public class GameEngine {
                 return;
             }
             board.moveItem(player, Direction.east);
+            break;
+        case 'k':
+            BattleMechanics battle = new BattleMechanics();
+            BoardItem target = battle.runBattle(player, board);
+            if (target != null)
+                boardItemManager.removeItem(target);
             break;
         }
     }

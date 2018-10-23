@@ -18,9 +18,11 @@ public class Enemy extends Character {
     public static final int INITIAL_SPEED = 3;
     public static final int INITIAL_Accuracy = 2;
     public static final int INITIAL_LEVEL = 1;
+    public static final int INITIAL_MinRange = 1;
+    public static final int INITIAL_MaxRange = 1;
 
     public Enemy() {
-        super(INITIAL_HP, INITIAL_STRENGTH, INITIAL_DEFENSE, INITIAL_SPEED, INITIAL_Accuracy, INITIAL_LEVEL);
+        super(INITIAL_HP, INITIAL_STRENGTH, INITIAL_DEFENSE, INITIAL_SPEED, INITIAL_Accuracy, INITIAL_LEVEL, INITIAL_MinRange, INITIAL_MaxRange);
         this.setGraphics(new PlayerGraphics());
         random = new Random();
     }
@@ -29,13 +31,14 @@ public class Enemy extends Character {
         this.setLevel(this.getLevel() + 1);
     }
 
+    // Måste se till att fiender inte kan gå in i varandra.
     @Override
     public void move(GameEngine engine) {
         Board board = engine.getBoard();
         Position playerPos = board.getItemPosition(engine.getPlayer());
         float distance = board.getItemPosition(this).getDistanceTo(playerPos);
 
-        if (distance < 10) {
+        if (distance < 10 && distance > 1) {
             board.moveItem(this, getClosestDirection(playerPos, board));
         } else {
             randomMove(board);

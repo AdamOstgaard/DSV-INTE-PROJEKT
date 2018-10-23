@@ -1,12 +1,14 @@
 package com.Grupp25.app.characters;
 
 import com.Grupp25.app.board.*;
+import com.Grupp25.app.Direction;
 
 public abstract class Character extends BoardItem {
 
-    private int hp, strength, defense, speed, accuracy, level;
+    private int hp, strength, defense, speed, accuracy, level, minRange, maxRange;
+    private Direction direction;
 
-    public Character(int hp, int strength, int defense, int speed, int accuracy, int level) {
+    public Character(int hp, int strength, int defense, int speed, int accuracy, int level, int minRange, int maxRange) {
 
         this.hp = hp;
         this.strength = strength;
@@ -14,6 +16,9 @@ public abstract class Character extends BoardItem {
         this.speed = speed;
         this.accuracy = accuracy;
         this.level = level;
+        this.minRange = minRange;
+        this.maxRange = maxRange;
+        direction = Direction.west;
     }
 
     public int getHp() {
@@ -72,10 +77,26 @@ public abstract class Character extends BoardItem {
         return level;
     }
 
+    public int getMinRange(){
+        return this.minRange;
+    }
+
+    public int getMaxRange(){
+        return this.maxRange;
+    }
+
     /**
      * @param level the level to set
      */
     protected void setLevel(int level) {
         this.level = level;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
     }
 }

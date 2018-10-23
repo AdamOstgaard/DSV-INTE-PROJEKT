@@ -46,4 +46,20 @@ public class CharacterTest {
     public void getSpeedTest() {
         assertEquals(3, aCharacter.getSpeed());
     }
+
+    @Test
+    public void getDirectionTest() {
+        aCharacter.setDirection(Direction.east);
+        assertEquals(Direction.east, aCharacter.getDirection());
+    }
+
+    @Test
+    public void getMinRangeTest(){
+        assertEquals(1, aCharacter.getMinRange());
+    }
+
+    @Test
+    public void getMaxRangeTest(){
+        assertEquals(1, aCharacter.getMaxRange());
+    }
 }

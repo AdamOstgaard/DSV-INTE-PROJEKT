@@ -36,7 +36,7 @@ public class TextureHandler {
                 textures.put(fileName, ImageIO.read(file));
             }
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            // JOptionPane.showMessageDialog(null, e.getMessage());
         }
         return textures.get(fileName);
     }
