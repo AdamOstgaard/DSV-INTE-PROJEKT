@@ -9,9 +9,6 @@ public class Item extends BoardItem {
     JLabel graphics;
     String name;
 
-    Item() {
-
-    }
 
     Item(JLabel icon, String name) {
         this.setGraphics(icon);
