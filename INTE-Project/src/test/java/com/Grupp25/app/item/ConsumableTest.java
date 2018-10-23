@@ -3,28 +3,30 @@ import com.Grupp25.app.characters.*;
 
 import static org.junit.Assert.*;
 
+import javax.swing.JLabel;
 import org.junit.Before;
 import org.junit.Test;
 
-public class PotionTest {
+public class ConsumableTest {
 
-    Potion potion;
+    Consumable consumable;
     Player player;
+    JLabel icon;
 
     @Before
     public void setUp() {
-        potion = new Potion(50, 1);
+		consumable = new Consumable(50, 1, icon, "Potato Juice");
         player = new Player();
     }
 
     @Test
     public void getHealingPower() {
-        assertEquals(50, potion.getHealingPower());
+        assertEquals(50, consumable.getHealingPower());
     }
 
     @Test
     public void consumeTest(){
-        potion.consume(player);
+        consumable.consume(player);
         assertEquals(150, player.getHp());
     }
 
