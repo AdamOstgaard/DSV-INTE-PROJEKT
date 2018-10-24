@@ -82,6 +82,9 @@ public class Board extends JFrame implements KeyListener {
 
     public void addItem(int x, int y, BoardItem item) {
         Position pos = getPosition(x, y);
+        if (pos == null) {
+            return;
+        }
         if (pos.getBoardItem() == null) {
             pos.setBoardItem(item);
             addGraphics(pos, item.getGraphics(), 4);
@@ -100,12 +103,11 @@ public class Board extends JFrame implements KeyListener {
 
     public void moveItem(BoardItem item, Direction direction) {
         Position p = getItemPosition(item);
-        Position nextPosition = getNextPosition(direction, p);            
+        Position nextPosition = getNextPosition(direction, p);
         if (nextPosition != null && nextPosition.getBoardItem() == null) {
             p.setBoardItem(null);
             nextPosition.setBoardItem(item);
             addGraphics(nextPosition, item.getGraphics(), 4);
-            return;
         }
     }
 
@@ -122,18 +124,17 @@ public class Board extends JFrame implements KeyListener {
         return positions.size();
     }
 
-    public BoardItem getItemAt(int x, int y){
+    public BoardItem getItemAt(int x, int y) {
         BoardItem item;
         item = getPosition(x, y).getBoardItem();
         return item;
     }
 
     public Position getPosition(int x, int y) throws IllegalArgumentException {
-        if (checkBoundries(x, y)) {
-            return positions.get(new Position(x, y).hashCode());
+        if (!checkBoundries(x, y)) {
+            return null;
         }
-
-        throw new IllegalArgumentException();
+        return positions.get(new Position(x, y).hashCode());
     }
 
     private boolean checkBoundries(int x, int y) {
@@ -161,16 +162,20 @@ public class Board extends JFrame implements KeyListener {
     }
 
     public Position getNextPosition(Direction direction, Position p) {
-        switch (direction) {
-        case east:
-            return getPosition(p.getX() + 1, p.getY());
-        case west:
-            return getPosition(p.getX() - 1, p.getY());
-        case north:
-            return getPosition(p.getX(), p.getY() - 1);
-        case south:
-            return getPosition(p.getX(), p.getY() + 1);
-        default:
+        try {
+            switch (direction) {
+            case east:
+                return getPosition(p.getX() + 1, p.getY());
+            case west:
+                return getPosition(p.getX() - 1, p.getY());
+            case north:
+                return getPosition(p.getX(), p.getY() - 1);
+            case south:
+                return getPosition(p.getX(), p.getY() + 1);
+            default:
+                return null;
+            }
+        } catch (Exception e) {
             return null;
         }
     }

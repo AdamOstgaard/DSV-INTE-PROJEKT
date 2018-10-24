@@ -22,7 +22,8 @@ public class Enemy extends Character {
     public static final int INITIAL_MaxRange = 1;
 
     public Enemy() {
-        super(INITIAL_HP, INITIAL_STRENGTH, INITIAL_DEFENSE, INITIAL_SPEED, INITIAL_Accuracy, INITIAL_LEVEL, INITIAL_MinRange, INITIAL_MaxRange);
+        super(INITIAL_HP, INITIAL_STRENGTH, INITIAL_DEFENSE, INITIAL_SPEED, INITIAL_Accuracy, INITIAL_LEVEL,
+                INITIAL_MinRange, INITIAL_MaxRange);
         this.setGraphics(new PlayerGraphics());
         random = new Random();
     }
@@ -38,7 +39,7 @@ public class Enemy extends Character {
         Position playerPos = board.getItemPosition(engine.getPlayer());
         float distance = board.getItemPosition(this).getDistanceTo(playerPos);
 
-        if (distance < 10 && distance > 1) {
+        if (distance < 10) {
             board.moveItem(this, getClosestDirection(playerPos, board));
         } else {
             randomMove(board);
@@ -60,16 +61,16 @@ public class Enemy extends Character {
 
         switch (r) {
         case 1:
-            board.moveItem(this, Direction.west);
+            move(board, Direction.west);
             break;
         case 2:
-            board.moveItem(this, Direction.north);
+            move(board, Direction.east);
             break;
         case 3:
-            board.moveItem(this, Direction.south);
+            move(board, Direction.south);
             break;
         case 4:
-            board.moveItem(this, Direction.east);
+            move(board, Direction.east);
             break;
         }
     }
