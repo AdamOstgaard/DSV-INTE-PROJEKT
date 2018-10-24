@@ -115,7 +115,16 @@ public class Enemy extends Character {
     private EnemyState getState(GameEngine engine) {
         Board board = engine.getBoard();
         Position playerPos = board.getItemPosition(engine.getPlayer());
-        float distance = board.getItemPosition(this).getDistanceTo(playerPos);
+        if (playerPos == null) {
+            return EnemyState.wandering;
+        }
+
+        Position pos = board.getItemPosition(this);
+        if (pos == null) {
+            return EnemyState.wandering;
+        }
+
+        float distance = pos.getDistanceTo(playerPos);
 
         if (distance < 4) {
             if (explosionTimer > 3) {
