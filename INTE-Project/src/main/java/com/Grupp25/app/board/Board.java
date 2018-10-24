@@ -101,6 +101,17 @@ public class Board extends JFrame implements KeyListener {
         repaint();
     }
 
+    public void updateGraphics(BoardItem item, JLabel newGraphics) {
+        Position p = getItemPosition(item);
+        newGraphics.setBounds((int) getAbsoluteCoordinates(p).getX(), (int) getAbsoluteCoordinates(p).getY(),
+                DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE);
+        layeredPane.remove(item.getGraphics());
+        layeredPane.add(newGraphics);
+        newGraphics.setVisible(true);
+        item.setGraphics(newGraphics);
+        repaint();
+    }
+
     private void addGraphics(Position p, JLabel graphics, int zIndex) {
         graphics.setBounds((int) getAbsoluteCoordinates(p).getX(), (int) getAbsoluteCoordinates(p).getY(),
                 DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE);

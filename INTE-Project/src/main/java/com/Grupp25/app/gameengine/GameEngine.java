@@ -34,7 +34,7 @@ public class GameEngine {
     public void tick() {
         tickCounter++;
         boardItemManager.doTick(this);
-        int nexMonster = tickCounter % 5;
+        int nexMonster = tickCounter % 1;
         if (nexMonster == 0) {
             Position pos = new Position(random.nextInt(Board.DEFAULT_TILE_SIZE),
                     random.nextInt(Board.DEFAULT_TILE_SIZE));
@@ -43,7 +43,7 @@ public class GameEngine {
         }
     }
 
-    public BoardItemManager getBoardItemManager(){
+    public BoardItemManager getBoardItemManager() {
         return boardItemManager;
     }
 

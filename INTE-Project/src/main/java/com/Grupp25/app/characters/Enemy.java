@@ -27,7 +27,7 @@ public class Enemy extends Character {
     public Enemy() {
         super(INITIAL_HP, INITIAL_STRENGTH, INITIAL_DEFENSE, INITIAL_SPEED, INITIAL_Accuracy, INITIAL_LEVEL,
                 INITIAL_MinRange, INITIAL_MaxRange);
-        this.setGraphics(new PlayerGraphics());
+        this.setGraphics(new EnemyGraphics());
         random = new Random();
         state = EnemyState.wandering;
     }
@@ -126,13 +126,13 @@ public class Enemy extends Character {
 
         float distance = pos.getDistanceTo(playerPos);
 
-        if (distance < 4) {
+        if (distance < 5) {
             if (explosionTimer > 3) {
                 return EnemyState.exploding;
             }
             explosionTimer++;
         }
-        if (distance < 10) {
+        if (distance < 12) {
             return EnemyState.chasing;
         }
         return EnemyState.wandering;
