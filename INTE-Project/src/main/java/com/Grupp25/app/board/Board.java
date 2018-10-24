@@ -94,7 +94,9 @@ public class Board extends JFrame implements KeyListener {
 
     public void removeItem(BoardItem item) {
         Position p = getItemPosition(item);
-        p.setBoardItem(null);
+        if (p != null) {
+            p.setBoardItem(null);
+        }
         layeredPane.remove(item.getGraphics());
         repaint();
     }

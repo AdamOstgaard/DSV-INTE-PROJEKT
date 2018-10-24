@@ -11,19 +11,21 @@ import com.Grupp25.app.board.Position;
 public class BoardItemManager {
     private HashSet<BoardItem> items;
     private HashSet<BoardItem> itemsToBeRemoved;
+    private HashSet<BoardItem> itemsToBeAdded;
     private Board board;
 
     public BoardItemManager(Board board) {
         this.board = board;
         items = new HashSet<>();
         itemsToBeRemoved = new HashSet<>();
+        itemsToBeAdded = new HashSet<>();
 
     }
 
     public void addItem(int x, int y, BoardItem item) {
         Position pos = board.getPosition(x, y);
         if (pos != null && pos.getBoardItem() == null) {
-            this.items.add(item);
+            this.itemsToBeAdded.add(item);
             board.addItem(x, y, item);
         }
     }
@@ -47,6 +49,11 @@ public class BoardItemManager {
             item.move(engine);
         }
         items.removeAll(itemsToBeRemoved);
+        itemsToBeRemoved.forEach(i -> {
+            board.removeItem(i);
+        });
+        items.addAll(itemsToBeAdded);
+
         itemsToBeRemoved.clear();
     }
 }
