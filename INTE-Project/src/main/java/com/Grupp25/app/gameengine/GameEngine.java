@@ -43,8 +43,8 @@ public class GameEngine {
         }
     }
 
-    public void addBoardItem(int x, int y, BoardItem item) {
-
+    public BoardItemManager getBoardItemManager(){
+        return boardItemManager;
     }
 
     public Board getBoard() {

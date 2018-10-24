@@ -92,6 +92,13 @@ public class Board extends JFrame implements KeyListener {
         repaint();
     }
 
+    public void removeItem(BoardItem item) {
+        Position p = getItemPosition(item);
+        p.setBoardItem(null);
+        layeredPane.remove(item.getGraphics());
+        repaint();
+    }
+
     private void addGraphics(Position p, JLabel graphics, int zIndex) {
         graphics.setBounds((int) getAbsoluteCoordinates(p).getX(), (int) getAbsoluteCoordinates(p).getY(),
                 DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE);
@@ -99,6 +106,17 @@ public class Board extends JFrame implements KeyListener {
         layeredPane.add(graphics, zIndex);
         graphics.setToolTipText("test");
         graphics.setVisible(true);
+    }
+
+    public void clearPosition(int x, int y) {
+        Position pos = getPosition(x, y);
+        if (pos != null) {
+            BoardItem item = pos.getBoardItem();
+            if (item != null) {
+
+            }
+            pos.setBoardItem(null);
+        }
     }
 
     public void moveItem(BoardItem item, Direction direction) {
