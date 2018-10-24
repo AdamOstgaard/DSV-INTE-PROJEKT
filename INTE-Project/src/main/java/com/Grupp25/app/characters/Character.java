@@ -8,7 +8,8 @@ public abstract class Character extends BoardItem {
     private int hp, strength, defense, speed, accuracy, level, minRange, maxRange;
     private Direction direction;
 
-    public Character(int hp, int strength, int defense, int speed, int accuracy, int level, int minRange, int maxRange) {
+    public Character(int hp, int strength, int defense, int speed, int accuracy, int level, int minRange,
+            int maxRange) {
 
         this.hp = hp;
         this.strength = strength;
@@ -28,7 +29,7 @@ public abstract class Character extends BoardItem {
     /**
      * @param hp the hp to set
      */
-    public void setHp(int hp){
+    public void setHp(int hp) {
         this.hp = hp;
     }
 
@@ -77,11 +78,11 @@ public abstract class Character extends BoardItem {
         return level;
     }
 
-    public int getMinRange(){
+    public int getMinRange() {
         return this.minRange;
     }
 
-    public int getMaxRange(){
+    public int getMaxRange() {
         return this.maxRange;
     }
 
@@ -98,5 +99,13 @@ public abstract class Character extends BoardItem {
 
     public void setDirection(Direction direction) {
         this.direction = direction;
+    }
+
+    public void move(Board board, Direction direction) {
+        if (getDirection() != direction) {
+            setDirection(direction);
+        } else {
+            board.moveItem(this, direction);
+        }
     }
 }

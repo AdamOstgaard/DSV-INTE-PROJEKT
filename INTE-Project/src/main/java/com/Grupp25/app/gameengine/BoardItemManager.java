@@ -18,10 +18,9 @@ public class BoardItemManager {
     }
 
     public void addItem(int x, int y, BoardItem item) {
-        this.items.add(item);
-
         Position pos = board.getPosition(x, y);
-        if (pos.getBoardItem() == null) {
+        if (pos != null && pos.getBoardItem() == null) {
+            this.items.add(item);
             board.addItem(x, y, item);
         }
     }

@@ -2,6 +2,7 @@ package com.Grupp25.app.gameengine;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Random;
 
 import javax.swing.Timer;
 
@@ -17,20 +18,29 @@ public class GameEngine {
     private BoardItemManager boardItemManager;
     private Player player;
     private Timer timer;
+    private int tickCounter;
+    private Random random;
 
     public GameEngine(Board board) {
         this.boardItemManager = new BoardItemManager(board);
         this.board = board;
         player = new Player();
+        random = new Random();
         addPlayer(new Position(5, 5), player);
-        addEnemy(new Position(1, 5), new Enemy());
-        addEnemy(new Position(6, 5), new Enemy());
         board.initialize(this);
         startGame();
     }
 
     public void tick() {
+        tickCounter++;
         boardItemManager.doTick(this);
+        int nexMonster = tickCounter % 5;
+        if (nexMonster == 0) {
+            Position pos = new Position(random.nextInt(Board.DEFAULT_TILE_SIZE),
+                    random.nextInt(Board.DEFAULT_TILE_SIZE));
+            addEnemy(pos, new Enemy());
+
+        }
     }
 
     public void addBoardItem(int x, int y, BoardItem item) {
@@ -58,39 +68,23 @@ public class GameEngine {
     }
 
     public void addEnemy(Position pos, Enemy enemy) {
-        this.boardItemManager.addItem(pos.getX(), pos.getY(), new Enemy());
+        this.boardItemManager.addItem(pos.getX(), pos.getY(), enemy);
     }
 
     public void keyInput(Character input) {
 
         switch (input.charValue()) {
         case 'a':
-            if (player.getDirection() != Direction.west) {
-                player.setDirection(Direction.west);
-                return;
-            }
-            board.moveItem(player, Direction.west);
+            player.move(board, Direction.west);
             break;
         case 'w':
-            if (player.getDirection() != Direction.north) {
-                player.setDirection(Direction.north);
-                return;
-            }
-            board.moveItem(player, Direction.north);
+            player.move(board, Direction.north);
             break;
         case 's':
-            if (player.getDirection() != Direction.south) {
-                player.setDirection(Direction.south);
-                return;
-            }
-            board.moveItem(player, Direction.south);
+            player.move(board, Direction.south);
             break;
         case 'd':
-            if (player.getDirection() != Direction.east) {
-                player.setDirection(Direction.east);
-                return;
-            }
-            board.moveItem(player, Direction.east);
+            player.move(board, Direction.east);
             break;
         case 'k':
             BattleMechanics battle = new BattleMechanics();
