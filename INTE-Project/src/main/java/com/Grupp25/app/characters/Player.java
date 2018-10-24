@@ -2,7 +2,8 @@ package com.Grupp25.app.characters;
 
 import javax.swing.JLabel;
 
-
+import com.Grupp25.app.Direction;
+import com.Grupp25.app.board.Board;
 import com.Grupp25.app.gameengine.GameEngine;
 
 public class Player extends Character {
@@ -14,12 +15,12 @@ public class Player extends Character {
     public static final int INITIAL_LEVEL = 1;
     public static final int INITIAL_MinRange = 1;
     public static final int INITIAL_MaxRange = 1;
-    
 
     public Player() {
-        super(INITIAL_HP, INITIAL_STRENGTH, INITIAL_DEFENSE, INITIAL_SPEED, INITIAL_Accuracy, INITIAL_LEVEL, INITIAL_MinRange, INITIAL_MaxRange);
-        this.setGraphics(new PlayerGraphics());
-        
+        super(INITIAL_HP, INITIAL_STRENGTH, INITIAL_DEFENSE, INITIAL_SPEED, INITIAL_Accuracy, INITIAL_LEVEL,
+                INITIAL_MinRange, INITIAL_MaxRange);
+        this.setGraphics(new PlayerGraphics(90));
+
     }
 
     public void levelUp() {
@@ -28,7 +29,17 @@ public class Player extends Character {
 
     @Override
     public void move(GameEngine engine) {
+    }
 
+    @Override
+    public void move(Board board, Direction direction) {
+        if (getDirection() != direction) {
+            PlayerGraphics graphics = new PlayerGraphics(direction.rotation());
+            board.updateGraphics(this, graphics);
+            setDirection(direction);
+        } else {
+            board.moveItem(this, direction);
+        }
     }
 
     @Override
@@ -40,6 +51,4 @@ public class Player extends Character {
     public void setGraphics(JLabel value) {
         this.graphics = value;
     }
-
-
 }

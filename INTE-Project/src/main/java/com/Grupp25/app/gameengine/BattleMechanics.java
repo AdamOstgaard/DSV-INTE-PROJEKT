@@ -37,6 +37,9 @@ public class BattleMechanics {
         }
         for (int i = 0; i <= maxRange - minRange; i++) {
             hitTarget = board.getItemAt(hitPos.getX(), hitPos.getY());
+            if (hitTarget == null) {
+                continue;
+            }
             if ((attacker instanceof Player && hitTarget instanceof Enemy)
                     || attacker instanceof Enemy && hitTarget instanceof Player)
                 return (Character) hitTarget;

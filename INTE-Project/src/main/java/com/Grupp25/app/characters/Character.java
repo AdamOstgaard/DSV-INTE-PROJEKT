@@ -102,10 +102,6 @@ public abstract class Character extends BoardItem {
     }
 
     public void move(Board board, Direction direction) {
-        if (getDirection() != direction) {
-            setDirection(direction);
-        } else {
-            board.moveItem(this, direction);
-        }
+
     }
 }
