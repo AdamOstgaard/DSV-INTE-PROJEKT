@@ -7,11 +7,14 @@ import javax.swing.JLabel;
 import com.Grupp25.app.Direction;
 import com.Grupp25.app.board.Board;
 import com.Grupp25.app.board.Position;
+import com.Grupp25.app.gameengine.BoardItemManager;
 import com.Grupp25.app.gameengine.GameEngine;
 
 public class Enemy extends Character {
     public Random random;
 
+    private int explosionTimer;
+    private EnemyState state;
     public static final int INITIAL_HP = 100;
     public static final int INITIAL_STRENGTH = 15;
     public static final int INITIAL_DEFENSE = 10;
@@ -26,24 +29,41 @@ public class Enemy extends Character {
                 INITIAL_MinRange, INITIAL_MaxRange);
         this.setGraphics(new PlayerGraphics());
         random = new Random();
+        state = EnemyState.wandering;
     }
 
     public void levelUp() {
         this.setLevel(this.getLevel() + 1);
     }
 
-    // Måste se till att fiender inte kan gå in i varandra.
     @Override
     public void move(GameEngine engine) {
         Board board = engine.getBoard();
-        Position playerPos = board.getItemPosition(engine.getPlayer());
-        float distance = board.getItemPosition(this).getDistanceTo(playerPos);
-
-        if (distance < 10) {
-            board.moveItem(this, getClosestDirection(playerPos, board));
-        } else {
+        switch (getState(engine)) {
+        case wandering:
             randomMove(board);
+            break;
+        case chasing:
+            Position playerPos = board.getItemPosition(engine.getPlayer());
+            board.moveItem(this, getClosestDirection(playerPos, board));
+            break;
+        case exploding:
+            explode(engine);
+            break;
         }
+    }
+
+    private void explode(GameEngine engine) {
+        BoardItemManager boardItemManager = engine.getBoardItemManager();
+        Board board = engine.getBoard();
+        Position pos = engine.getBoard().getItemPosition(this);
+        boardItemManager.removeItem(this);
+
+        boardItemManager.replaceItem(pos.getX(), pos.getY(), new Explosion());
+        boardItemManager.replaceItem(pos.getX() - 1, pos.getY(), new Explosion());
+        boardItemManager.replaceItem(pos.getX() + 1, pos.getY(), new Explosion());
+        boardItemManager.replaceItem(pos.getX(), pos.getY() - 1, new Explosion());
+        boardItemManager.replaceItem(pos.getX(), pos.getY() + 1, new Explosion());
     }
 
     @Override
@@ -90,5 +110,22 @@ public class Enemy extends Character {
             return Direction.north;
         }
         return Direction.south;
+    }
+
+    private EnemyState getState(GameEngine engine) {
+        Board board = engine.getBoard();
+        Position playerPos = board.getItemPosition(engine.getPlayer());
+        float distance = board.getItemPosition(this).getDistanceTo(playerPos);
+
+        if (distance < 4) {
+            if (explosionTimer > 3) {
+                return EnemyState.exploding;
+            }
+            explosionTimer++;
+        }
+        if (distance < 10) {
+            return EnemyState.chasing;
+        }
+        return EnemyState.wandering;
     }
 }
