@@ -8,11 +8,13 @@ import com.Grupp25.app.gameengine.GameEngine;
 public class Item extends BoardItem {
     JLabel graphics;
     String name;
+    ItemType itemType;
 
 
-    Item(JLabel icon, String name) {
+    Item(JLabel icon, String name, ItemType itemType) {
         this.setGraphics(icon);
         this.name = name;
+        this.itemType = itemType;
     }
 
     @Override
@@ -28,6 +30,10 @@ public class Item extends BoardItem {
     @Override
     public void move(GameEngine engine) {
 
+    }
+
+    public ItemType getItemType(){
+        return itemType;
     }
 
 }
