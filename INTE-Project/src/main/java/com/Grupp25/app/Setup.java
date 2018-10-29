@@ -7,6 +7,8 @@ import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.awt.event.*;
+import java.nio.charset.IllegalCharsetNameException;
+import java.util.jar.Attributes.Name;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -30,6 +32,23 @@ public class Setup extends JFrame {
 
     private void choosePlayerName(){
 
+    }
+
+    public void setPlayerName(String name){
+        if (checkValidName(name))
+            this.playerName = name;
+        else
+            throw new IllegalArgumentException("Invalid name!");
+    }
+
+    private boolean checkValidName(String name){
+        if (name.length() > 12)
+            return false;
+        else if (!name.chars().allMatch(Character::isLetter))
+            return false;    
+        else if (name.contains(" "))
+            return false;
+        return true;
     }
 
     private void choosePlayerClass(){
