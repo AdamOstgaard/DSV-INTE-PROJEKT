@@ -42,7 +42,7 @@ public class Setup extends JFrame {
     }
 
     private boolean checkValidName(String name){
-        if (name.length() > 12)
+        if (name.length() > 13)
             return false;
         else if (!name.chars().allMatch(Character::isLetter))
             return false;    

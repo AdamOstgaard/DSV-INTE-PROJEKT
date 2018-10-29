@@ -22,7 +22,7 @@ public class SetupTest {
 
      @Test (expected = Exception.class)
      public void illegalCharactersInName(){
-        setup.setPlayerName("h3man");
+        setup.setPlayerName("hunter2");
      }
 
      @Test (expected = NullPointerException.class)
