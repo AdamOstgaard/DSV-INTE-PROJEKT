@@ -14,7 +14,7 @@ public class Weapon extends Item {
 
 
     public Weapon(int damage, int minWeaponRange, int maxWeaponRange, Image icon, String name) {
-        super(icon, name);
+        super(icon, name, itemType);
         this.damage = damage;
         this.minWeaponRange = minWeaponRange;
         this.maxWeaponRange = maxWeaponRange;

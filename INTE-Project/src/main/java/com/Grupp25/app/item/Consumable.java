@@ -13,7 +13,7 @@ public class Consumable extends Item {
 
 
     public Consumable (int healingPower, int amount, Image icon, String name){
-        super(icon, name);
+        super(icon, name, itemType);
         this.healingPower = healingPower;
         this.amount = amount;
     }

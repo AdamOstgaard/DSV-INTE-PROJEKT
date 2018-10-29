@@ -11,12 +11,13 @@ import com.Grupp25.app.gameengine.GameEngine;
 
 public class Item extends BoardItem {
     String name;
+    ItemType itemType;
 
 
     TileGraphics graphics;
 
 
-    Item(Image texture, String name) {
+    Item(Image texture, String name, ItemType itemType) {
         graphics = new TileGraphics(Color.BLACK, texture);
         this.setGraphics(graphics);
         this.name = name;
