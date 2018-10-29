@@ -20,19 +20,33 @@ public class SetupTest {
         setup = new Setup();
     }
 
-    // @Test (expected = Exception.class)
-    // public void illegalCharactersInName(){
+     @Test (expected = Exception.class)
+     public void illegalCharactersInName(){
+        setup.setPlayerName("hunter S");
+     }
 
-    // }
+     @Test (expected = Exception.class)
+     public void numbersInName(){
+         setup.setPlayerName("hunter2");
+     }
 
-    // @Test (expected = NullPointerException.class)
-    // public void nameIsNull(){
+     @Test (expected = Exception.class)
+     public void nameIsNull(){
+        setup.setPlayerName("");
+     }
 
-    // }
+     @Test (expected = Exception.class)
+     public void nameIsTooLong(){
+        setup.setPlayerName("Longinamninenden");
+     }
 
-    // @Test (expected = Exception.class)
-    // public void nameIsTooLong(){
+     @Test
+     public void selectWoodSword(){
+         
+         assertNotNull(setup.selectWeapon("Wood sword"));
+     }
+     
 
-    // }
+
 
 }

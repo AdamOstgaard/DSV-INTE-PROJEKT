@@ -1,7 +1,9 @@
 package com.Grupp25.app.item;
 
+import java.awt.Image;
+
 import javax.swing.JLabel;
-import com.Grupp25.app.characters.Character;
+import com.Grupp25.app.characters.GameCharacter;
 
 public class Consumable extends Item {
 
@@ -9,8 +11,9 @@ public class Consumable extends Item {
     private static final ItemType itemType = ItemType.CONSUMABLE;
 
 
-    public Consumable (int healingPower, int amount, JLabel icon, String name){
-        super(icon, name, itemType);
+
+    public Consumable (int healingPower, int amount, Image icon, String name){
+        super(icon, name);
         this.healingPower = healingPower;
         this.amount = amount;
     }
@@ -21,7 +24,7 @@ public class Consumable extends Item {
     }
 
 
-    public void consume(Character character){
+    public void consume(GameCharacter character){
         if (amount > 0){
             amount --;
             character.setHp(character.getHp() + healingPower);

@@ -6,7 +6,7 @@ import com.Grupp25.app.Direction;
 import com.Grupp25.app.board.Board;
 import com.Grupp25.app.gameengine.GameEngine;
 
-public class Player extends Character {
+public class Player extends GameCharacter {
     public static final int INITIAL_HP = 100;
     public static final int INITIAL_STRENGTH = 15;
     public static final int INITIAL_DEFENSE = 10;

@@ -10,7 +10,7 @@ import com.Grupp25.app.board.Position;
 import com.Grupp25.app.gameengine.BoardItemManager;
 import com.Grupp25.app.gameengine.GameEngine;
 
-public class Enemy extends Character {
+public class Enemy extends GameCharacter {
     public Random random;
 
     private int explosionTimer;

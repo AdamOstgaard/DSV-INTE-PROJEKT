@@ -1,5 +1,7 @@
 package com.Grupp25.app.item;
 
+import java.awt.Image;
+
 import javax.swing.JLabel;
 
 public class Armor extends Item {
@@ -8,8 +10,9 @@ public class Armor extends Item {
     private static final ItemType itemType = ItemType.ARMOR;
 
 
-    public Armor(int protection, JLabel icon, String name) {
-        super(icon, name, itemType);
+
+    public Armor(int protection, Image icon, String name) {
+        super(icon, name);
         this.protection = protection;
     }
 
