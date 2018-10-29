@@ -10,13 +10,13 @@ public class BattleMechanics {
     private Random rand;
 
     public BattleMechanics() {
+        rand = new Random();
     }
 
     public BoardItem runBattle(Character attacker, Board board) {
         Character target = searchTarget(attacker, board);
         if (target == null)
             return null;
-        rand = new Random();
         if (determineHit(attacker, target) == true) {
             determineDamage(attacker, target);
             return target;
@@ -26,10 +26,8 @@ public class BattleMechanics {
 
     public Character searchTarget(Character attacker, Board board) {
         Position attackerPos = board.getItemPosition(attacker);
-        // int maxRange = attacker.getMaxRange();
-        // int minRange = attacker.getMinRange();
-        int maxRange = 4;
-        int minRange = 2;
+        int maxRange = attacker.getMaxRange();
+        int minRange = attacker.getMinRange();
         Position hitPos = attackerPos;
         BoardItem hitTarget;
         for (int i = 0; i < minRange; i++) {
