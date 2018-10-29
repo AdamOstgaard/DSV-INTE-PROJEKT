@@ -47,8 +47,7 @@ public class BattleMechanicsTest {
 
     @Test
     public void determineDamageTest(){
-        Character fiende = (Character) board.getItemAt(1, 5);
-        battleMechanics.determineDamage(game.getPlayer(),  fiende, 1);
-        assertEquals(94, fiende.getHp());
+        battleMechanics.determineDamage(game.getPlayer(),  enemy1, 1);
+        assertEquals(94, enemy1.getHp());
     }
 }
