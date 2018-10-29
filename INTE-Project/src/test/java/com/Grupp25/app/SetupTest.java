@@ -20,19 +20,19 @@ public class SetupTest {
         setup = new Setup();
     }
 
-    // @Test (expected = Exception.class)
-    // public void illegalCharactersInName(){
+     @Test (expected = Exception.class)
+     public void illegalCharactersInName(){
+        setup.setPlayerName("hunter2");
+     }
 
-    // }
+     @Test (expected = NullPointerException.class)
+     public void nameIsNull(){
 
-    // @Test (expected = NullPointerException.class)
-    // public void nameIsNull(){
+     }
 
-    // }
+     @Test (expected = Exception.class)
+     public void nameIsTooLong(){
 
-    // @Test (expected = Exception.class)
-    // public void nameIsTooLong(){
-
-    // }
+     }
 
 }
