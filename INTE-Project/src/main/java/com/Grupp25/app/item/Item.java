@@ -11,6 +11,8 @@ import com.Grupp25.app.gameengine.GameEngine;
 
 public class Item extends BoardItem {
     String name;
+
+
     TileGraphics graphics;
 
 
@@ -18,6 +20,7 @@ public class Item extends BoardItem {
         graphics = new TileGraphics(Color.BLACK, texture);
         this.setGraphics(graphics);
         this.name = name;
+        this.itemType = itemType;
     }
 
     @Override
@@ -33,6 +36,10 @@ public class Item extends BoardItem {
     @Override
     public void move(GameEngine engine) {
 
+    }
+
+    public ItemType getItemType(){
+        return itemType;
     }
 
 }

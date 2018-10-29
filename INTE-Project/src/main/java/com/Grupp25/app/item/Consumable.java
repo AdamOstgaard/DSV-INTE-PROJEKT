@@ -8,6 +8,8 @@ import com.Grupp25.app.characters.GameCharacter;
 public class Consumable extends Item {
 
     private int healingPower, amount;
+    private static final ItemType itemType = ItemType.CONSUMABLE;
+
 
 
     public Consumable (int healingPower, int amount, Image icon, String name){
