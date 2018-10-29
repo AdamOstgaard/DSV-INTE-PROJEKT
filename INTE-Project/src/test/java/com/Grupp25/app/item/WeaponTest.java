@@ -2,6 +2,8 @@ package com.Grupp25.app.item;
 
 import static org.junit.Assert.*;
 
+import java.awt.Image;
+
 import javax.swing.JLabel;
 
 import org.junit.Before;
@@ -10,7 +12,7 @@ import org.junit.Test;
 public class WeaponTest {
 
     Weapon weapon;
-    JLabel icon;
+    Image icon;
 
     @Before
     public void setUp() {

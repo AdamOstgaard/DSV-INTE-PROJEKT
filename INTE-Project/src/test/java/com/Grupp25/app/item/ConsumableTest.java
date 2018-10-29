@@ -3,6 +3,8 @@ import com.Grupp25.app.characters.*;
 
 import static org.junit.Assert.*;
 
+import java.awt.Image;
+
 import javax.swing.JLabel;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +13,7 @@ public class ConsumableTest {
 
     Consumable consumable;
     Player player;
-    JLabel icon;
+    Image icon;
 
     @Before
     public void setUp() {

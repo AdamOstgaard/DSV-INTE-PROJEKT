@@ -22,17 +22,31 @@ public class SetupTest {
 
      @Test (expected = Exception.class)
      public void illegalCharactersInName(){
-        setup.setPlayerName("hunter2");
+        setup.setPlayerName("hunter S");
      }
 
-     @Test (expected = NullPointerException.class)
-     public void nameIsNull(){
+     @Test (expected = Exception.class)
+     public void numbersInName(){
+         setup.setPlayerName("hunter2");
+     }
 
+     @Test (expected = Exception.class)
+     public void nameIsNull(){
+        setup.setPlayerName("");
      }
 
      @Test (expected = Exception.class)
      public void nameIsTooLong(){
-
+        setup.setPlayerName("Longinamninenden");
      }
+
+     @Test
+     public void selectWoodSword(){
+         
+         assertNotNull(setup.selectWeapon("Wood sword"));
+     }
+     
+
+
 
 }
