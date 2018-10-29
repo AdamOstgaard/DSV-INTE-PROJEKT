@@ -2,7 +2,7 @@ package com.Grupp25.app;
 
 import static org.junit.Assert.*;
 
-import com.Grupp25.app.characters.Character;
+import com.Grupp25.app.characters.GameCharacter;
 import com.Grupp25.app.characters.Player;
 
 import org.junit.Before;
@@ -10,7 +10,7 @@ import org.junit.Test;
 
 public class CharacterTest {
 
-    Character aCharacter;
+    GameCharacter aCharacter;
 
     @Before
     public void setUp() throws Exception {

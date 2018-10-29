@@ -3,12 +3,12 @@ package com.Grupp25.app.characters;
 import com.Grupp25.app.board.*;
 import com.Grupp25.app.Direction;
 
-public abstract class Character extends BoardItem {
+public abstract class GameCharacter extends BoardItem {
 
     private int hp, strength, defense, speed, accuracy, level, minRange, maxRange;
     private Direction direction;
 
-    public Character(int hp, int strength, int defense, int speed, int accuracy, int level, int minRange,
+    public GameCharacter(int hp, int strength, int defense, int speed, int accuracy, int level, int minRange,
             int maxRange) {
 
         this.hp = hp;

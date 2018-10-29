@@ -6,7 +6,7 @@ import com.Grupp25.app.board.*;
 import com.Grupp25.app.characters.*;
 import com.Grupp25.app.Direction;
 import com.Grupp25.app.gameengine.*;
-import com.Grupp25.app.characters.Character;
+import com.Grupp25.app.characters.GameCharacter;
 
 import org.junit.Before;
 import org.junit.Test;
