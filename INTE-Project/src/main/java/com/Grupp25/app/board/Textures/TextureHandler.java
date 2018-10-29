@@ -20,7 +20,7 @@ public class TextureHandler {
         return getTexture("tile_grass.png");
     }
 
-    public Image rockTexture() {
+    public Image getRockTexture() {
         return getTexture("tile_rock.png");
     }
 

@@ -1,5 +1,7 @@
 package com.Grupp25.app.item;
 
+import java.awt.Image;
+
 import javax.swing.JLabel;
 
 public class Weapon extends Item {
@@ -9,7 +11,7 @@ public class Weapon extends Item {
     private int maxWeaponRange;
 
 
-    public Weapon(int damage, int minWeaponRange, int maxWeaponRange, JLabel icon, String name) {
+    public Weapon(int damage, int minWeaponRange, int maxWeaponRange, Image icon, String name) {
        super(icon, name);
         this.damage = damage;
         this.minWeaponRange = minWeaponRange;
@@ -27,6 +29,10 @@ public class Weapon extends Item {
 
     public int getMaxWeaponRange() {
         return maxWeaponRange;
+    }
+    
+    public String getName() {
+        return this.name;
     }
 
     //oklart om vi kommer använda dessa set-metoder
