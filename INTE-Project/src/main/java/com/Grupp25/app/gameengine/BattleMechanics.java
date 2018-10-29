@@ -2,7 +2,7 @@ package com.Grupp25.app.gameengine;
 
 import com.Grupp25.app.characters.*;
 import com.Grupp25.app.board.*;
-import com.Grupp25.app.characters.Character;
+import com.Grupp25.app.characters.GameCharacter;
 import java.util.Random;
 
 public class BattleMechanics {
@@ -10,13 +10,13 @@ public class BattleMechanics {
     private Random rand;
 
     public BattleMechanics() {
+        rand = new Random();
     }
 
-    public BoardItem runBattle(Character attacker, Board board) {
-        Character target = searchTarget(attacker, board);
+    public GameCharacter runBattle(GameCharacter attacker, Board board) {
+        GameCharacter target = searchTarget(attacker, board);
         if (target == null)
             return null;
-        rand = new Random();
         if (determineHit(attacker, target) == true) {
             determineDamage(attacker, target);
             return target;
@@ -24,12 +24,10 @@ public class BattleMechanics {
             return null;
     }
 
-    public Character searchTarget(Character attacker, Board board) {
+    public GameCharacter searchTarget(GameCharacter attacker, Board board) {
         Position attackerPos = board.getItemPosition(attacker);
-        // int maxRange = attacker.getMaxRange();
-        // int minRange = attacker.getMinRange();
-        int maxRange = 4;
-        int minRange = 2;
+        int maxRange = attacker.getMaxRange();
+        int minRange = attacker.getMinRange();
         Position hitPos = attackerPos;
         BoardItem hitTarget;
         for (int i = 0; i < minRange; i++) {
@@ -42,14 +40,14 @@ public class BattleMechanics {
             }
             if ((attacker instanceof Player && hitTarget instanceof Enemy)
                     || attacker instanceof Enemy && hitTarget instanceof Player)
-                return (Character) hitTarget;
+                return (GameCharacter) hitTarget;
             hitPos = board.getNextPosition(attacker.getDirection(), hitPos);
         }
         return null;
     }
 
     // Tänker att chansen ska modifieras baserat på statsen.
-    private boolean determineHit(Character attacker, Character target) {
+    private boolean determineHit(GameCharacter attacker, GameCharacter target) {
         int dice = rand.nextInt(20) + 1;
         if (dice > 2)
             return true;
@@ -58,7 +56,7 @@ public class BattleMechanics {
     }
 
     // Tillfällig överskuggning innan random är implementerad i test.
-    public boolean determineHit(Character attacker, Character target, int slump) {
+    public boolean determineHit(GameCharacter attacker, GameCharacter target, int slump) {
         if (slump > 2)
             return true;
         else
@@ -66,7 +64,7 @@ public class BattleMechanics {
     }
 
     // Tänker att chansen ska modifieras baserat på statsen.
-    private void determineDamage(Character attacker, Character target) {
+    private void determineDamage(GameCharacter attacker, GameCharacter target) {
         int dice = rand.nextInt(20) + 1;
         int damageDealt = dice + attacker.getStrength() - target.getDefense();
         if (damageDealt < 1)
@@ -75,7 +73,7 @@ public class BattleMechanics {
     }
 
     // Tillfällig överskuggning innan random är implementerad i test.
-    public void determineDamage(Character attacker, Character target, int slump) {
+    public void determineDamage(GameCharacter attacker, GameCharacter target, int slump) {
         int damageDealt = slump + attacker.getStrength() - target.getDefense();
         if (damageDealt < 1)
             damageDealt = 1;

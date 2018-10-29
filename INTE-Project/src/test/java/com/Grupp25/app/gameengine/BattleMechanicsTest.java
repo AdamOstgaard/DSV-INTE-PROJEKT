@@ -6,7 +6,7 @@ import com.Grupp25.app.board.*;
 import com.Grupp25.app.characters.*;
 import com.Grupp25.app.Direction;
 import com.Grupp25.app.gameengine.*;
-import com.Grupp25.app.characters.Character;
+import com.Grupp25.app.characters.GameCharacter;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -25,18 +25,19 @@ public class BattleMechanicsTest {
         board = new Board();
         game = new GameEngine(board);
         battleMechanics = new BattleMechanics();
-        // player = new Player();
-        // enemy1 = new Enemy();
-        // enemy2 = new Enemy();
-        // game.addPlayer(new Position(5, 5), player);
-        // game.addEnemy(new Position(2, 5), enemy1);
-        // game.addEnemy(new Position(6, 5), enemy2);
+        enemy1 = new Enemy();
     }
 
-    //Är just nu beroende av vart spelaren och fienden spawnar.
     @Test
     public void searchTargetTest(){
-        assertEquals(board.getItemAt(1, 5), battleMechanics.searchTarget(game.getPlayer(), board));
+        game.addEnemy(new Position(4, 5), enemy1);
+        assertEquals(enemy1, battleMechanics.searchTarget(game.getPlayer(), board));
+    }
+
+    @Test
+    public void searchTargetTestMiss(){
+        game.addEnemy(new Position(3, 5), enemy1);
+        assertEquals(null, battleMechanics.searchTarget(game.getPlayer(), board));
     }
 
     @Test
@@ -46,8 +47,7 @@ public class BattleMechanicsTest {
 
     @Test
     public void determineDamageTest(){
-        Character fiende = (Character) board.getItemAt(1, 5);
-        battleMechanics.determineDamage(game.getPlayer(),  fiende, 1);
-        assertEquals(94, fiende.getHp());
+        battleMechanics.determineDamage(game.getPlayer(),  enemy1, 1);
+        assertEquals(94, enemy1.getHp());
     }
 }

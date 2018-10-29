@@ -10,6 +10,7 @@ import com.Grupp25.app.Direction;
 import com.Grupp25.app.board.Board;
 import com.Grupp25.app.board.BoardItem;
 import com.Grupp25.app.characters.Enemy;
+import com.Grupp25.app.characters.GameCharacter;
 import com.Grupp25.app.characters.Player;
 import com.Grupp25.app.board.Position;
 
@@ -88,8 +89,8 @@ public class GameEngine {
             break;
         case 'k':
             BattleMechanics battle = new BattleMechanics();
-            BoardItem target = battle.runBattle(player, board);
-            if (target != null)
+            GameCharacter target = battle.runBattle(player, board);
+            if (target != null && target.getHp() <= 0)
                 boardItemManager.removeItem(target);
             break;
         }
