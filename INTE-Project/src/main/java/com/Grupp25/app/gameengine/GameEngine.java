@@ -90,8 +90,9 @@ public class GameEngine {
         case 'k':
             BattleMechanics battle = new BattleMechanics();
             GameCharacter target = battle.runBattle(player, board);
-            if (target != null && target.getHp() <= 0)
+            if (target != null && target.getHp() <= 0) {
                 boardItemManager.removeItem(target);
+            }
             break;
         }
     }

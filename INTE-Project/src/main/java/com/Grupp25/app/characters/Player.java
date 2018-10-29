@@ -8,6 +8,7 @@ import com.Grupp25.app.gameengine.GameEngine;
 
 public class Player extends GameCharacter {
     public static final int INITIAL_HP = 100;
+    public static final int INITIAL_MaxHp = 100;
     public static final int INITIAL_STRENGTH = 15;
     public static final int INITIAL_DEFENSE = 10;
     public static final int INITIAL_SPEED = 3;
@@ -15,20 +16,28 @@ public class Player extends GameCharacter {
     public static final int INITIAL_LEVEL = 1;
     public static final int INITIAL_MinRange = 1;
     public static final int INITIAL_MaxRange = 1;
+    public static final int INITIAL_XP = 0;
+    private int xp;
 
     public Player() {
-        super(INITIAL_HP, INITIAL_STRENGTH, INITIAL_DEFENSE, INITIAL_SPEED, INITIAL_Accuracy, INITIAL_LEVEL,
-                INITIAL_MinRange, INITIAL_MaxRange);
+        super(INITIAL_HP, INITIAL_MaxHp, INITIAL_STRENGTH, INITIAL_DEFENSE, INITIAL_SPEED, INITIAL_Accuracy, INITIAL_LEVEL,
+                INITIAL_MinRange, INITIAL_MaxRange, INITIAL_XP);
         this.setGraphics(new PlayerGraphics(90));
 
     }
 
     public void levelUp() {
         this.setLevel(this.getLevel() + 1);
+        this.setMaxHp(this.getMaxHp() + 5);
+        this.setStrenth(this.getStrength() + 2);
+        this.setDefense(this.getDefense() + 2);
+        this.setSpeed(this.getSpeed() + 1);
+        this.setAccuracy(this.getAccuracy() + 1);
     }
 
     @Override
-    public void move(GameEngine engine) {
+    public void move(GameEngine engine){
+        
     }
 
     @Override

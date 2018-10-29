@@ -46,6 +46,11 @@ public class BattleMechanicsTest {
     }
 
     @Test
+    public void determineHitTestMiss(){
+        assertFalse(battleMechanics.determineHit(game.getPlayer(), enemy1, 2));
+    }
+
+    @Test
     public void determineDamageTest(){
         battleMechanics.determineDamage(game.getPlayer(),  enemy1, 1);
         assertEquals(94, enemy1.getHp());

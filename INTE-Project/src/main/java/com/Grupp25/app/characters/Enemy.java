@@ -16,6 +16,7 @@ public class Enemy extends GameCharacter {
     private int explosionTimer;
     private EnemyState state;
     public static final int INITIAL_HP = 100;
+    public static final int INITIAL_MaxHp = 100;
     public static final int INITIAL_STRENGTH = 15;
     public static final int INITIAL_DEFENSE = 10;
     public static final int INITIAL_SPEED = 3;
@@ -23,10 +24,11 @@ public class Enemy extends GameCharacter {
     public static final int INITIAL_LEVEL = 1;
     public static final int INITIAL_MinRange = 1;
     public static final int INITIAL_MaxRange = 1;
+    public static final int INITIAL_XP = 10;
 
     public Enemy() {
-        super(INITIAL_HP, INITIAL_STRENGTH, INITIAL_DEFENSE, INITIAL_SPEED, INITIAL_Accuracy, INITIAL_LEVEL,
-                INITIAL_MinRange, INITIAL_MaxRange);
+        super(INITIAL_HP, INITIAL_MaxHp, INITIAL_STRENGTH, INITIAL_DEFENSE, INITIAL_SPEED, INITIAL_Accuracy, INITIAL_LEVEL,
+                INITIAL_MinRange, INITIAL_MaxRange, INITIAL_XP);
         this.setGraphics(new EnemyGraphics());
         random = new Random();
         state = EnemyState.wandering;
