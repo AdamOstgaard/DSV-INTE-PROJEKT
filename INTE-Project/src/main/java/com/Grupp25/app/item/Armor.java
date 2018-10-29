@@ -12,7 +12,7 @@ public class Armor extends Item {
 
 
     public Armor(int protection, Image icon, String name) {
-        super(icon, name);
+        super(icon, name, itemType);
         this.protection = protection;
     }
 
