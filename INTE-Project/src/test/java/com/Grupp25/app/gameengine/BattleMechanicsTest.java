@@ -29,6 +29,18 @@ public class BattleMechanicsTest {
     }
 
     @Test
+    public void runBattleTest(){
+        game.addEnemy(new Position(4, 5), enemy1);
+        assertEquals(enemy1, battleMechanics.runBattle(game.getPlayer(), board, 3));
+    }
+
+    @Test
+    public void runBattleTestMiss(){
+        game.addEnemy(new Position(4, 5), enemy1);
+        assertEquals(null, battleMechanics.runBattle(game.getPlayer(), board, 2));
+    }
+
+    @Test
     public void searchTargetTest(){
         game.addEnemy(new Position(4, 5), enemy1);
         assertEquals(enemy1, battleMechanics.searchTarget(game.getPlayer(), board));
