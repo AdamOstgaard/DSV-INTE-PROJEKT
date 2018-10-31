@@ -32,6 +32,7 @@ public class BattleMechanicsTest {
 
     @Test
     public void runBattleTest(){
+        //Random.nextInt(20) + 1 = 3
         game.addEnemy(new Position(4, 5), enemy1);
         battleMechanics.setRandom(new Random(4));
         assertEquals(enemy1, battleMechanics.runBattle(game.getPlayer(), board));
@@ -44,9 +45,10 @@ public class BattleMechanicsTest {
 
     @Test
     public void runBattleTestMiss(){
+        //Random.nextInt(20) + 1 = 2
         game.addEnemy(new Position(4, 5), enemy1);
         battleMechanics.setRandom(new Random(15));
-        assertEquals(null, battleMechanics.runBattle(game.getPlayer(), board, 2));
+        assertEquals(null, battleMechanics.runBattle(game.getPlayer(), board));
     }
 
     @Test
