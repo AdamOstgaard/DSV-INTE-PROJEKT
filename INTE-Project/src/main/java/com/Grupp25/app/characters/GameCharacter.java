@@ -95,6 +95,8 @@ public abstract class GameCharacter extends BoardItem {
     }
 
     public void gainXp(int i) {
+        if (i < 0)
+            throw new IllegalArgumentException();
         this.xp = this.xp + i;
         while (this.xp >= this.xpForNextLevel) {
             levelUp();
