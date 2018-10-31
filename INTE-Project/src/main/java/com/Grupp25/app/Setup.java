@@ -1,7 +1,9 @@
 package com.Grupp25.app;
 
 import com.Grupp25.app.board.Textures.TextureHandler;
+import com.Grupp25.app.gameengine.GameEngine;
 import com.Grupp25.app.item.Weapon;
+import com.Grupp25.app.board.*;
 
 
 import java.awt.BorderLayout;
@@ -24,7 +26,7 @@ public class Setup extends JFrame {
     private Weapon selectedWeapon;
     private int boardWidth;
     private int boardHeight;
-    private int tickRate; 
+    public String currentState;
 
     public Setup(){
         startingWeapons = new Weapon [6];
@@ -37,8 +39,8 @@ public class Setup extends JFrame {
         generateStartingWeapons();
     }
 
-    private void choosePlayerName(){
-
+    public void choosePlayerName(){
+        this.currentState = "choosePlayerName";
     }
 
     public void setPlayerName(String name){
@@ -46,6 +48,10 @@ public class Setup extends JFrame {
             this.playerName = name;
         else
             throw new IllegalArgumentException("Invalid name!");
+    }
+
+    public String getPlayerName(){
+        return this.playerName;
     }
 
     private boolean checkValidName(String name){
@@ -58,27 +64,56 @@ public class Setup extends JFrame {
         return true;
     }
 
-    private void weaponSelection(){
+    public void chooseWeapon(){
+        this.currentState = "chooseWeapon";
+    }
 
+    public void goBack(){
+        switch(currentState){
+            case("choosePlayerName"):
+                break;
+            case("chooseWeapon"):
+                choosePlayerName();
+                break;
+            case("chooseGameParameters"):
+                chooseWeapon();
+                break;
+        }
     }
 
     public Weapon selectWeapon(String weapon){
         for (Weapon w : startingWeapons)
-        if (w.getName() == weapon){
+        if (w != null && w.getName() == weapon){
             return w;
         }
     return null;
     }
 
-    private void chooseGameParameters(){
+    public void chooseGameParameters(){
+        this.currentState = "chooseGameParameters";
+    }
 
+    public Board inputGameParameters(int width, int height){
+        if (checkParameterBounds(width) && checkParameterBounds(height)){
+            return new Board(width, height);
+        }
+        else
+            throw new IllegalArgumentException();
+    }
+
+    private boolean checkParameterBounds(int i){
+        if (0 < i && i < 50)
+            return true;
+        else
+            return false;
     }
 
     // Starting equipment
+    // Rock is placeholder texture
     private void generateStartingWeapons(){
         TextureHandler textureHandler = new TextureHandler();
         startingWeapons[0] = new Weapon(8, 0, 1, textureHandler.getRockTexture(), "Wood sword");
-        startingWeapons[1] = new Weapon(5, 0, 2, null, "Wood spear");
+        startingWeapons[1] = new Weapon(5, 0, 2, textureHandler.getRockTexture(), "Wood spear");
     }
     
 
