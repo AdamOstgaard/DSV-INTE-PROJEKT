@@ -98,7 +98,7 @@ public class Setup extends JFrame {
             return new Board(width, height);
         }
         else
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Board dimensions out of bounds");
     }
 
     private boolean checkParameterBounds(int i){
