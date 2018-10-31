@@ -1,8 +1,10 @@
 package com.Grupp25.app.characters;
 
 import com.Grupp25.app.board.*;
+
+import java.awt.font.NumericShaper.Range;
+
 import com.Grupp25.app.Direction;
-import java.lang.Math;
 
 public abstract class GameCharacter extends BoardItem {
 
@@ -21,7 +23,7 @@ public abstract class GameCharacter extends BoardItem {
         this.level = level;
         this.minRange = minRange;
         this.maxRange = maxRange;
-        this.nextLevel = findNextLevel();
+        this.nextLevel = getXpForNextLevel();
         direction = Direction.west;
     }
 
@@ -36,7 +38,7 @@ public abstract class GameCharacter extends BoardItem {
         this.hp = hp;
     }
 
-    public void setMaxHp(int max){
+    public void setMaxHp(int max) {
         this.maxHp = max;
     }
 
@@ -55,7 +57,6 @@ public abstract class GameCharacter extends BoardItem {
     public int getDefense() {
         return defense;
     }
-
 
     /**
      * @param defense the defense to set
@@ -98,44 +99,33 @@ public abstract class GameCharacter extends BoardItem {
         return this.maxRange;
     }
 
-    public int getXp(){
+    public int getXp() {
         return this.xp;
     }
 
-    public void gainXp(int i){
+    public void gainXp(int i) {
         this.xp = this.xp + i;
         while (this.xp >= this.nextLevel) {
             levelUp();
-            this.nextLevel = findNextLevel();
+            this.nextLevel = getXpForNextLevel();
         }
     }
 
     public abstract void levelUp();
 
-    public int findNextLevel(){
-        int initial = 100;
-        int increase = 20;
-        int multiplier = 0;
-        int multiplierIncrease = 1;
-        for (int i = 1; i < this.getLevel(); i++){
-            multiplier = multiplier + multiplierIncrease;
-            initial = initial + 100;
-            multiplierIncrease ++;
+    public int getXpForNextLevel() {
+        int xpNextLevel = 100;
+        int increase = 120;
+        for (int i = 1; i < this.getLevel(); i++) {
+            xpNextLevel += increase;
+            increase += 20;
         }
-        return initial + (increase * multiplier);
+        return xpNextLevel;
     }
 
-    
-
-
-    /**
-     * @param level the level to set
-     */
     public void setLevel(int level) {
         this.level = level;
     }
-
-    
 
     public Direction getDirection() {
         return direction;

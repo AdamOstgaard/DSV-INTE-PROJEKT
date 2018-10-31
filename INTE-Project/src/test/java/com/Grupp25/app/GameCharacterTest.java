@@ -55,7 +55,7 @@ public class GameCharacterTest {
     @Test
     public void findNextLevelTest(){
         aCharacter.setLevel(4);
-        assertEquals(520, aCharacter.findNextLevel());
+        assertEquals(520, aCharacter.getXpForNextLevel());
     }
 
     @Test
@@ -71,9 +71,15 @@ public class GameCharacterTest {
     }
 
     @Test
-    public void levelUpTest2(){
+    public void levelUpTest2() {
         aCharacter.gainXp(219);
         assertEquals(2, aCharacter.getLevel());
+    }
+
+    @Test
+    public void levelUpTest3(){
+        aCharacter.gainXp(360);
+        assertEquals(4, aCharacter.getLevel());
     }
 
     @Test

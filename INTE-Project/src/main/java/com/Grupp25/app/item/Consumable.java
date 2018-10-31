@@ -1,8 +1,6 @@
 package com.Grupp25.app.item;
 
 import java.awt.Image;
-
-import javax.swing.JLabel;
 import com.Grupp25.app.characters.GameCharacter;
 
 public class Consumable extends Item {

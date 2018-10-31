@@ -9,7 +9,7 @@ import com.Grupp25.app.board.BoardItem;
 import com.Grupp25.app.board.TileGraphics;
 import com.Grupp25.app.gameengine.GameEngine;
 
-public class Item extends BoardItem {
+public abstract class Item extends BoardItem {
     String name;
     ItemType itemType;
 
