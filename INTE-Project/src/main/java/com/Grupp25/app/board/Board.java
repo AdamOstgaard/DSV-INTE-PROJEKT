@@ -20,8 +20,8 @@ import javax.swing.SwingUtilities;
 public class Board extends JFrame implements KeyListener {
     private GameEngine gameEngine;
     private HashMap<Integer, Position> positions;
-    private int width;
-    private int height;
+    private int boardWidth;
+    private int boardHeight;
     private Random random;
     private JLayeredPane layeredPane;
     public static final long serialVersionUID = 1L;
@@ -32,8 +32,8 @@ public class Board extends JFrame implements KeyListener {
     }
 
     public Board(int width, int height) {
-        this.height = height;
-        this.width = width;
+        this.boardHeight = height;
+        this.boardWidth = width;
 
         positions = new HashMap<Integer, Position>();
         random = new Random();
@@ -56,8 +56,8 @@ public class Board extends JFrame implements KeyListener {
     }
 
     private void generatePositions() {
-        for (int i = 0; i < width; i++) {
-            for (int j = 0; j < height; j++) {
+        for (int i = 0; i < boardWidth; i++) {
+            for (int j = 0; j < boardHeight; j++) {
                 Position pos = new Position(i, j);
                 positions.put(pos.hashCode(), pos);
             }
@@ -157,8 +157,10 @@ public class Board extends JFrame implements KeyListener {
 
     public BoardItem getItemAt(int x, int y) {
         BoardItem item;
-        item = getPosition(x, y).getBoardItem();
-        return item;
+        Position pos = getPosition(x, y);
+        if (pos == null)
+            return null;
+        return pos.getBoardItem();
     }
 
     public Position getPosition(int x, int y) throws IllegalArgumentException {
@@ -168,8 +170,12 @@ public class Board extends JFrame implements KeyListener {
         return positions.get(new Position(x, y).hashCode());
     }
 
+    public void setPosition(Position pos){
+        positions.put(pos.hashCode(), pos);
+    }
+
     private boolean checkBoundries(int x, int y) {
-        return x < width && y < height && x >= 0 && y >= 0;
+        return x < boardWidth && y < boardHeight && x >= 0 && y >= 0;
     }
 
     private Point2D getAbsoluteCoordinates(Position p) {
@@ -177,12 +183,13 @@ public class Board extends JFrame implements KeyListener {
     }
 
     public int getBoardWidth(){
-        return this.width;
+        return this.boardWidth;
     }
 
     public int getBoardHeight(){
-        return this.height;
+        return this.boardHeight;
     }
+
 
 
 

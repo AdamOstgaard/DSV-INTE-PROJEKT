@@ -74,11 +74,6 @@ public class GameCharacterTest {
         aCharacter.gainXp(-1);
     }
 
-    @Test(expected = Error.class)
-    public void levelUpErrorTest(){
-        aCharacter.gainXp("a");
-    }
-
     @Test
     public void levelUpTest1(){
         aCharacter.gainXp(0);

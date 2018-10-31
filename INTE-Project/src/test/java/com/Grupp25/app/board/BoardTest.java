@@ -1,43 +1,76 @@
 package com.Grupp25.app.board;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import static org.junit.Assert.*;
+import org.junit.Before;
+import org.junit.Test;
 
-public class BoardTest extends TestCase {
-    public BoardTest(String testName) {
-        super(testName);
+import com.Grupp25.app.characters.Enemy;
+
+public class BoardTest {
+
+    Board board;
+    Enemy enemy;
+
+    @Before
+    public void setUP(){
+        board = new Board(10, 10);
+        enemy = new Enemy();
     }
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite() {
-        return new TestSuite(PositionTest.class);
+
+    @Test
+    public void getPositionsSizeTest() {
+        assertEquals(100, board.getPositionsSize());
     }
 
-    @org.junit.Test
-    public void testBoardCreate() {
-        Board testBoard = new Board(2, 2);
-        assertTrue(testBoard.getPositionsSize() == 4);
+    @Test
+    public void getPositionOutOfBoundsTest(){
+        assertEquals(null, board.getPosition(10, 10));
     }
 
-    @org.junit.Test
-    public void testGetExistingPosition(){
-        Board testBoard = new Board(20, 25);
-        assertTrue(testBoard.getPosition(10, 10) != null);
+    @Test
+    public void getPositionTest(){
+        Position pos = new Position(5, 5);
+        board.setPosition(pos);
+        assertEquals(pos, board.getPosition(5, 5));
     }
 
-    @org.junit.Test
-    public void testNegativePosition(){
-        Board testBoard = new Board(15, 10);
-        assertNull(testBoard.getPosition(-1, -1));
+    @Test
+    public void negativePositionTest(){
+        assertNull(board.getPosition(-1, -1));
     }
 
-    @org.junit.Test
-    public void testOutOfBoundsPosition(){
-        Board testBoard = new Board(30, 30);
-        assertNull(testBoard.getPosition(31, 30));
+    @Test
+    public void outOfBoundsPositionTest(){
+        assertNull(board.getPosition(10, 10));
     }
 
+    @Test
+    public void getItemAtOutOfBoundsTest(){
+        board.addItem(10, 10, enemy);
+        assertNull(board.getItemAt(10, 10));
+    }
+
+    @Test
+    public void getItemAtTest(){
+        board.addItem(5, 5, enemy);
+        assertEquals(enemy, board.getItemAt(5, 5));
+    }
+
+    @Test
+    public void removeItemTest(){
+        board.addItem(5, 5, enemy);
+        board.removeItem(enemy);
+        assertNull(board.getItemAt(5, 5));
+    }
+
+    @Test
+    public void getBoardWidthTest(){
+        assertEquals(10, board.getBoardWidth());
+    }
+
+    @Test
+    public void getBoardHeightTest(){
+        assertEquals(10, board.getBoardHeight());
+    }
 }
