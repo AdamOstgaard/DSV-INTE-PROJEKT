@@ -27,8 +27,8 @@ public class Enemy extends GameCharacter {
     public static final int INITIAL_XP = 10;
 
     public Enemy() {
-        super(INITIAL_HP, INITIAL_MaxHp, INITIAL_STRENGTH, INITIAL_DEFENSE, INITIAL_SPEED, INITIAL_Accuracy, INITIAL_LEVEL,
-                INITIAL_MinRange, INITIAL_MaxRange, INITIAL_XP);
+        super(INITIAL_HP, INITIAL_MaxHp, INITIAL_STRENGTH, INITIAL_DEFENSE, INITIAL_SPEED, INITIAL_Accuracy,
+                INITIAL_LEVEL, INITIAL_MinRange, INITIAL_MaxRange, INITIAL_XP);
         this.setGraphics(new EnemyGraphics());
         random = new Random();
         state = EnemyState.wandering;
@@ -57,7 +57,6 @@ public class Enemy extends GameCharacter {
 
     private void explode(GameEngine engine) {
         BoardItemManager boardItemManager = engine.getBoardItemManager();
-        Board board = engine.getBoard();
         Position pos = engine.getBoard().getItemPosition(this);
         boardItemManager.removeItem(this);
 
@@ -71,6 +70,10 @@ public class Enemy extends GameCharacter {
     @Override
     public JLabel getGraphics() {
         return this.graphics;
+    }
+
+    public EnemyState getState() {
+        return state;
     }
 
     @Override
@@ -97,7 +100,7 @@ public class Enemy extends GameCharacter {
         }
     }
 
-    private Direction getClosestDirection(Position playerPosition, Board board) {
+    public Direction getClosestDirection(Position playerPosition, Board board) {
         Position ownPositinon = board.getItemPosition(this);
 
         if ((ownPositinon.getX() - playerPosition.getX()) > 0) {
