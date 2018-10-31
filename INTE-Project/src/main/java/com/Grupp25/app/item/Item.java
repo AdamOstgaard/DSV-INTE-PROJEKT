@@ -1,7 +1,5 @@
 package com.Grupp25.app.item;
 
-import java.awt.Color;
-import java.awt.Image;
 
 import javax.swing.JLabel;
 
@@ -12,13 +10,10 @@ import com.Grupp25.app.gameengine.GameEngine;
 public abstract class Item extends BoardItem {
     String name;
     ItemType itemType;
-
-
     TileGraphics graphics;
 
-
-    Item(Image texture, String name, ItemType itemType) {
-        graphics = new TileGraphics(Color.BLACK, texture);
+    Item(TileGraphics texture, String name, ItemType itemType) {
+        this.graphics = texture;
         this.setGraphics(graphics);
         this.name = name;
         this.itemType = itemType;
@@ -26,7 +21,7 @@ public abstract class Item extends BoardItem {
 
     @Override
     public void setGraphics(JLabel value) {
-		graphics = (TileGraphics) value;
+        this.graphics = (TileGraphics) value;
     }
 
     @Override
@@ -39,7 +34,7 @@ public abstract class Item extends BoardItem {
 
     }
 
-    public ItemType getItemType(){
+    public ItemType getItemType() {
         return itemType;
     }
 
