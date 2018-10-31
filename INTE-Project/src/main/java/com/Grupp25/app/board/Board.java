@@ -176,6 +176,16 @@ public class Board extends JFrame implements KeyListener {
         return new Point(p.getX() * DEFAULT_TILE_SIZE, p.getY() * DEFAULT_TILE_SIZE);
     }
 
+    public int getBoardWidth(){
+        return this.width;
+    }
+
+    public int getBoardHeight(){
+        return this.height;
+    }
+
+
+
     // Listeners
 
     @Override

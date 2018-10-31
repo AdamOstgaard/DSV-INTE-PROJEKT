@@ -1,8 +1,10 @@
 package com.Grupp25.app.characters;
 
 import com.Grupp25.app.board.*;
+
+import java.awt.font.NumericShaper.Range;
+
 import com.Grupp25.app.Direction;
-import java.lang.Math;
 
 public abstract class GameCharacter extends BoardItem {
 
@@ -19,10 +21,12 @@ public abstract class GameCharacter extends BoardItem {
         this.speed = speed;
         this.accuracy = accuracy;
         this.level = level;
+
         this.minAttackRange = minAttackRange;
         this.maxAttackRange = maxAttackRange;
         this.xpForNextLevel = determineXpForNextLevel();
         direction = Direction.west; //The original direction that characters are facing
+
     }
 
     public int getHp() {
@@ -33,7 +37,7 @@ public abstract class GameCharacter extends BoardItem {
         this.hp = hp;
     }
 
-    public void setMaxHp(int max){
+    public void setMaxHp(int max) {
         this.maxHp = max;
     }
 
@@ -52,6 +56,7 @@ public abstract class GameCharacter extends BoardItem {
     public int getDefense() {
         return defense;
     }
+
 
     protected void setDefense(int defense) {
         this.defense = defense;
@@ -85,11 +90,11 @@ public abstract class GameCharacter extends BoardItem {
         return this.maxAttackRange;
     }
 
-    public int getXp(){
+    public int getXp() {
         return this.xp;
     }
 
-    public void gainXp(int i){
+    public void gainXp(int i) {
         this.xp = this.xp + i;
         while (this.xp >= this.xpForNextLevel) {
             levelUp();
@@ -98,6 +103,7 @@ public abstract class GameCharacter extends BoardItem {
     }
 
     public abstract void levelUp();
+
 
     public int determineXpForNextLevel(){
         int xpNextLevel = 100;
@@ -113,7 +119,6 @@ public abstract class GameCharacter extends BoardItem {
     public int getXpForNextLevel(){
         return this.xpForNextLevel;
     }
-
     public void setLevel(int level) {
         this.level = level;
     }
