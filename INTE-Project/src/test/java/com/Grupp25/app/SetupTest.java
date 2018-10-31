@@ -86,7 +86,9 @@ public class SetupTest {
      @Test
      public void testValidGameParameters(){
         Board newBoard = setup.inputGameParameters(20, 30);
-        assertEquals(new Board(20, 30), newBoard);
+        assertEquals(new Board(20, 30).getWidth(), newBoard.getWidth());
+        assertEquals(new Board(20, 30).getHeight(), newBoard.getHeight());
+
      }
 
 }
