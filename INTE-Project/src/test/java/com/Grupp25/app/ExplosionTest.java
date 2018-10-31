@@ -2,6 +2,8 @@ package com.Grupp25.app;
 
 import static org.junit.Assert.assertEquals;
 
+import javax.swing.JLabel;
+
 import com.Grupp25.app.board.Board;
 import com.Grupp25.app.board.BoardItem;
 import com.Grupp25.app.characters.Explosion;
@@ -66,5 +68,14 @@ public class ExplosionTest {
         BoardItem item = board.getItemAt(1, 1);
         assertEquals(null, item);
 
+    }
+
+    @Test
+    public void setGraphicsTest() {
+        Explosion explosion = new Explosion();
+        JLabel g = explosion.getGraphics();
+        // No-op
+        explosion.setGraphics(null);
+        assertEquals(explosion.getGraphics(), g);
     }
 }
