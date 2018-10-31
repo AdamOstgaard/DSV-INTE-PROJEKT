@@ -83,10 +83,10 @@ public class Setup extends JFrame {
 
     public Weapon selectWeapon(String weapon){
         for (Weapon w : startingWeapons)
-        if (w != null && w.getName() == weapon){
-            return w;
-        }
-    return null;
+            if (w != null && w.getName() == weapon){
+                return w;
+            }
+        return null;
     }
 
     public void chooseGameParameters(){
