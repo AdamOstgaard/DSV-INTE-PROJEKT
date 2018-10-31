@@ -112,8 +112,9 @@ public class Setup extends JFrame {
     // Rock is placeholder texture
     private void generateStartingWeapons(){
         TextureHandler textureHandler = new TextureHandler();
-        startingWeapons[0] = new Weapon(8, 0, 1, textureHandler.getRockTexture(), "Wood sword");
-        startingWeapons[1] = new Weapon(5, 0, 2, textureHandler.getRockTexture(), "Wood spear");
+        TileGraphics t = new TileGraphics(Color.BLACK, textureHandler.getRockTexture());
+        startingWeapons[0] = new Weapon(8, 0, 1, t, "Wood sword");
+        startingWeapons[1] = new Weapon(5, 0, 2, t, "Wood spear");
     }
     
 
