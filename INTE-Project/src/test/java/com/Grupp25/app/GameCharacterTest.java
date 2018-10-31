@@ -69,22 +69,76 @@ public class GameCharacterTest {
         assertEquals(20, aCharacter.getXp());
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void levelUpIllegalArgumentTest(){
+        aCharacter.gainXp(-1);
+    }
+
+    @Test(expected = Error.class)
+    public void levelUpErrorTest(){
+        aCharacter.gainXp("a");
+    }
+
     @Test
-    public void levelUpTest(){
-        aCharacter.gainXp(220);
-        assertEquals(3, aCharacter.getLevel());
+    public void levelUpTest1(){
+        aCharacter.gainXp(0);
+        assertEquals(1, aCharacter.getLevel());
     }
 
     @Test
     public void levelUpTest2() {
-        aCharacter.gainXp(219);
-        assertEquals(2, aCharacter.getLevel());
+        aCharacter.gainXp(99);
+        assertEquals(1, aCharacter.getLevel());
     }
 
     @Test
     public void levelUpTest3(){
+        aCharacter.gainXp(100);
+        assertEquals(2, aCharacter.getLevel());
+    }
+
+    @Test
+    public void levelUpTest4(){
+        aCharacter.gainXp(99);
+        aCharacter.gainXp(120);
+        assertEquals(2, aCharacter.getLevel());
+    }
+
+    @Test
+    public void levelUpTest5(){
+        aCharacter.gainXp(100);
+        aCharacter.gainXp(120);
+        assertEquals(3, aCharacter.getLevel());
+    }
+
+    @Test
+    public void levelUpTest6(){
+        aCharacter.gainXp(359);
+        assertEquals(3, aCharacter.getLevel());
+    }
+
+    @Test
+    public void levelUpTest7(){
         aCharacter.gainXp(360);
         assertEquals(4, aCharacter.getLevel());
+    }
+
+    @Test
+    public void levelUpTest8(){
+        aCharacter.gainXp(519);
+        assertEquals(4, aCharacter.getLevel());
+    }
+
+    @Test
+    public void levelUpTest9(){
+        aCharacter.gainXp(520);
+        assertEquals(5, aCharacter.getLevel());
+    }
+
+    @Test
+    public void levelUpTest10(){
+        aCharacter.gainXp(699);
+        assertEquals(5, aCharacter.getLevel());
     }
 
     @Test
