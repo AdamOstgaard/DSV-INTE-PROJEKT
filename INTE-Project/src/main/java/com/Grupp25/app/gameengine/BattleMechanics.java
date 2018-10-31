@@ -23,18 +23,6 @@ public class BattleMechanics {
         } else
             return null;
     }
- 
-    // Tillfällig överskuggning innan random är implementerad i test.
-    public GameCharacter runBattle(GameCharacter attacker, Board board, int i) {
-        GameCharacter target = searchTarget(attacker, board);
-        if (target == null)
-            return null;
-        if (determineHit(attacker, target, i) == true) {
-            determineDamage(attacker, target);
-            return target;
-        } else
-            return null;
-    }
 
     public GameCharacter searchTarget(GameCharacter attacker, Board board) {
         Position attackerPos = board.getItemPosition(attacker);
@@ -59,7 +47,7 @@ public class BattleMechanics {
     }
 
     // Tänker att chansen ska modifieras baserat på statsen.
-    private boolean determineHit(GameCharacter attacker, GameCharacter target) {
+    public boolean determineHit(GameCharacter attacker, GameCharacter target) {
         int dice = rand.nextInt(20) + 1;
         if (dice > 2)
             return true;
@@ -67,16 +55,7 @@ public class BattleMechanics {
             return false;
     }
 
-    // Tillfällig överskuggning innan random är implementerad i test.
-    public boolean determineHit(GameCharacter attacker, GameCharacter target, int slump) {
-        if (slump > 2)
-            return true;
-        else
-            return false;
-    }
-
-    // Tänker att chansen ska modifieras baserat på statsen.
-    private void determineDamage(GameCharacter attacker, GameCharacter target) {
+    public void determineDamage(GameCharacter attacker, GameCharacter target) {
         int dice = rand.nextInt(20) + 1;
         int damageDealt = dice + attacker.getStrength() - target.getDefense();
         if (damageDealt < 1)
@@ -84,12 +63,12 @@ public class BattleMechanics {
         target.setHp(target.getHp() - damageDealt);
     }
 
-    // Tillfällig överskuggning innan random är implementerad i test.
-    public void determineDamage(GameCharacter attacker, GameCharacter target, int slump) {
-        int damageDealt = slump + attacker.getStrength() - target.getDefense();
-        if (damageDealt < 1)
-            damageDealt = 1;
-        target.setHp(target.getHp() - damageDealt);
+    public void setRandom(Random r){
+        this.rand = r;
+    }
+
+    public Random getRandom(){
+        return this.rand;
     }
 
 }
