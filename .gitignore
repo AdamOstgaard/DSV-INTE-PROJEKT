@@ -8,3 +8,11 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
+INTE-Project/.idea/vcs.xml
+INTE-Project/INTE-Project.iml
+INTE-Project/.idea/compiler.xml
+INTE-Project/.idea/misc.xml
+INTE-Project/.idea/modules.xml
+INTE-Project/.idea/workspace.xml
+INTE-Project/.idea/libraries/Maven__junit_junit_4_9.xml
+INTE-Project/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_1.xml

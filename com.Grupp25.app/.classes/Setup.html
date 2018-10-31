@@ -1,0 +1,203 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Setup</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.Grupp25.app</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Setup (com.Grupp25.app)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Setup</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (12/ 12)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (48/ 48)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.Grupp25.app;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.Grupp25.app.board.Textures.TextureHandler;
+<i>4</i>&nbsp;import com.Grupp25.app.gameengine.GameEngine;
+<i>5</i>&nbsp;import com.Grupp25.app.item.Weapon;
+<i>6</i>&nbsp;import com.Grupp25.app.board.*;
+<i>7</i>&nbsp;
+<i>8</i>&nbsp;
+<i>9</i>&nbsp;import java.awt.BorderLayout;
+<i>10</i>&nbsp;import java.awt.Color;
+<i>11</i>&nbsp;import java.awt.Dimension;
+<i>12</i>&nbsp;import java.awt.FlowLayout;
+<i>13</i>&nbsp;import java.awt.GridLayout;
+<i>14</i>&nbsp;import java.awt.LayoutManager;
+<i>15</i>&nbsp;import java.awt.event.*;
+<i>16</i>&nbsp;import java.nio.charset.IllegalCharsetNameException;
+<i>17</i>&nbsp;import java.util.jar.Attributes.Name;
+<i>18</i>&nbsp;
+<i>19</i>&nbsp;import javax.swing.JButton;
+<i>20</i>&nbsp;import javax.swing.JFrame;
+<i>21</i>&nbsp;
+<i>22</i>&nbsp;public class Setup extends JFrame {
+<i>23</i>&nbsp;
+<i>24</i>&nbsp;    private String playerName;
+<i>25</i>&nbsp;    private Weapon [] startingWeapons;
+<i>26</i>&nbsp;    private Weapon selectedWeapon;
+<i>27</i>&nbsp;    private int boardWidth;
+<i>28</i>&nbsp;    private int boardHeight;
+<i>29</i>&nbsp;    public String currentState;
+<i>30</i>&nbsp;
+<b class="fc"><i>31</i>&nbsp;    public Setup(){</b>
+<b class="fc"><i>32</i>&nbsp;        startingWeapons = new Weapon [6];</b>
+<b class="fc"><i>33</i>&nbsp;        this.setVisible(true);</b>
+<b class="fc"><i>34</i>&nbsp;        this.setLayout(new FlowLayout());</b>
+<b class="fc"><i>35</i>&nbsp;        this.add(new JButton(&quot;Start game&quot;));</b>
+<b class="fc"><i>36</i>&nbsp;        this.add(new JButton(&quot;Game setup&quot;));</b>
+<b class="fc"><i>37</i>&nbsp;        this.setMinimumSize(new Dimension(200, 100));</b>
+<b class="fc"><i>38</i>&nbsp;        this.setPreferredSize(new Dimension(200, 100));</b>
+<b class="fc"><i>39</i>&nbsp;        generateStartingWeapons();</b>
+<b class="fc"><i>40</i>&nbsp;    }</b>
+<i>41</i>&nbsp;
+<i>42</i>&nbsp;    public void choosePlayerName(){
+<b class="fc"><i>43</i>&nbsp;        this.currentState = &quot;choosePlayerName&quot;;</b>
+<b class="fc"><i>44</i>&nbsp;    }</b>
+<i>45</i>&nbsp;
+<i>46</i>&nbsp;    public void setPlayerName(String name){
+<b class="fc"><i>47</i>&nbsp;        if (checkValidName(name))</b>
+<b class="fc"><i>48</i>&nbsp;            this.playerName = name;</b>
+<i>49</i>&nbsp;        else
+<b class="fc"><i>50</i>&nbsp;            throw new IllegalArgumentException(&quot;Invalid name!&quot;);</b>
+<b class="fc"><i>51</i>&nbsp;    }</b>
+<i>52</i>&nbsp;
+<i>53</i>&nbsp;    public String getPlayerName(){
+<b class="fc"><i>54</i>&nbsp;        return this.playerName;</b>
+<i>55</i>&nbsp;    }
+<i>56</i>&nbsp;
+<i>57</i>&nbsp;    private boolean checkValidName(String name){
+<b class="fc"><i>58</i>&nbsp;        if (name.length() &gt; 13)</b>
+<b class="fc"><i>59</i>&nbsp;            return false;</b>
+<b class="fc"><i>60</i>&nbsp;        else if (!name.chars().allMatch(Character::isLetter))</b>
+<b class="fc"><i>61</i>&nbsp;            return false;    </b>
+<b class="fc"><i>62</i>&nbsp;        else if (name.isEmpty())</b>
+<b class="fc"><i>63</i>&nbsp;            return false;</b>
+<b class="fc"><i>64</i>&nbsp;        return true;</b>
+<i>65</i>&nbsp;    }
+<i>66</i>&nbsp;
+<i>67</i>&nbsp;    public void chooseWeapon(){
+<b class="fc"><i>68</i>&nbsp;        this.currentState = &quot;chooseWeapon&quot;;</b>
+<b class="fc"><i>69</i>&nbsp;    }</b>
+<i>70</i>&nbsp;
+<i>71</i>&nbsp;    public void goBack(){
+<b class="fc"><i>72</i>&nbsp;        switch(currentState){</b>
+<i>73</i>&nbsp;            case(&quot;choosePlayerName&quot;):
+<b class="fc"><i>74</i>&nbsp;                break;</b>
+<i>75</i>&nbsp;            case(&quot;chooseWeapon&quot;):
+<b class="fc"><i>76</i>&nbsp;                choosePlayerName();</b>
+<b class="fc"><i>77</i>&nbsp;                break;</b>
+<i>78</i>&nbsp;            case(&quot;chooseGameParameters&quot;):
+<b class="fc"><i>79</i>&nbsp;                chooseWeapon();</b>
+<i>80</i>&nbsp;                break;
+<i>81</i>&nbsp;        }
+<b class="fc"><i>82</i>&nbsp;    }</b>
+<i>83</i>&nbsp;
+<i>84</i>&nbsp;    public Weapon selectWeapon(String weapon){
+<b class="fc"><i>85</i>&nbsp;        for (Weapon w : startingWeapons)</b>
+<b class="fc"><i>86</i>&nbsp;        if (w != null &amp;&amp; w.getName() == weapon){</b>
+<b class="fc"><i>87</i>&nbsp;            return w;</b>
+<i>88</i>&nbsp;        }
+<b class="fc"><i>89</i>&nbsp;    return null;</b>
+<i>90</i>&nbsp;    }
+<i>91</i>&nbsp;
+<i>92</i>&nbsp;    public void chooseGameParameters(){
+<b class="fc"><i>93</i>&nbsp;        this.currentState = &quot;chooseGameParameters&quot;;</b>
+<b class="fc"><i>94</i>&nbsp;    }</b>
+<i>95</i>&nbsp;
+<i>96</i>&nbsp;    public Board inputGameParameters(int width, int height){
+<b class="fc"><i>97</i>&nbsp;        if (checkParameterBounds(width) &amp;&amp; checkParameterBounds(height)){</b>
+<b class="fc"><i>98</i>&nbsp;            return new Board(width, height);</b>
+<i>99</i>&nbsp;        }
+<i>100</i>&nbsp;        else
+<b class="fc"><i>101</i>&nbsp;            throw new IllegalArgumentException(&quot;Board dimensions out of bounds&quot;);</b>
+<i>102</i>&nbsp;    }
+<i>103</i>&nbsp;
+<i>104</i>&nbsp;    private boolean checkParameterBounds(int i){
+<b class="fc"><i>105</i>&nbsp;        if (0 &lt; i &amp;&amp; i &lt; 50)</b>
+<b class="fc"><i>106</i>&nbsp;            return true;</b>
+<i>107</i>&nbsp;        else
+<b class="fc"><i>108</i>&nbsp;            return false;</b>
+<i>109</i>&nbsp;    }
+<i>110</i>&nbsp;
+<i>111</i>&nbsp;    // Starting equipment
+<i>112</i>&nbsp;    // Rock is placeholder texture
+<i>113</i>&nbsp;    private void generateStartingWeapons(){
+<b class="fc"><i>114</i>&nbsp;        TextureHandler textureHandler = new TextureHandler();</b>
+<b class="fc"><i>115</i>&nbsp;        startingWeapons[0] = new Weapon(8, 0, 1, textureHandler.getRockTexture(), &quot;Wood sword&quot;);</b>
+<b class="fc"><i>116</i>&nbsp;        startingWeapons[1] = new Weapon(5, 0, 2, textureHandler.getRockTexture(), &quot;Wood spear&quot;);</b>
+<b class="fc"><i>117</i>&nbsp;    }</b>
+<i>118</i>&nbsp;    
+<i>119</i>&nbsp;
+<i>120</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2018-10-31 19:07</div>
+</div>
+</body>
+</html>
