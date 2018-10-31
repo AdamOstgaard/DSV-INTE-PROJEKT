@@ -1,6 +1,8 @@
 package com.Grupp25.app.item;
 
 import java.awt.Image;
+
+import com.Grupp25.app.board.TileGraphics;
 import com.Grupp25.app.characters.GameCharacter;
 
 public class Consumable extends Item {
@@ -10,7 +12,7 @@ public class Consumable extends Item {
 
 
 
-    public Consumable (int healingPower, int amount, Image icon, String name){
+    public Consumable (int healingPower, int amount, TileGraphics icon, String name){
         super(icon, name, itemType);
         this.healingPower = healingPower;
         this.amount = amount;

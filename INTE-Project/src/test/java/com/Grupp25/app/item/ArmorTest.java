@@ -1,9 +1,7 @@
 package com.Grupp25.app.item;
 
-import javax.swing.JLabel;
+import com.Grupp25.app.board.TileGraphics;
 import static org.junit.Assert.*;
-
-import java.awt.Image;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +9,7 @@ import org.junit.Test;
 public class ArmorTest {
 
     Armor armor;
-    Image icon;
+    TileGraphics icon;
 
     @Before
     public void setUp() {
