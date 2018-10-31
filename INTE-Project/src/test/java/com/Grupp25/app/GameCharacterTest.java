@@ -53,9 +53,14 @@ public class GameCharacterTest {
     }
 
     @Test
-    public void findNextLevelTest(){
+    public void getXpForNextLevelTest(){
+        assertEquals(100, aCharacter.getXpForNextLevel());
+    }
+
+    @Test
+    public void determineXpForNextLevelTest(){
         aCharacter.setLevel(4);
-        assertEquals(520, aCharacter.findNextLevel());
+        assertEquals(520, aCharacter.determineXpForNextLevel());
     }
 
     @Test
@@ -91,11 +96,11 @@ public class GameCharacterTest {
 
     @Test
     public void getMinRangeTest(){
-        assertEquals(1, aCharacter.getMinRange());
+        assertEquals(1, aCharacter.getMinAttackRange());
     }
 
     @Test
     public void getMaxRangeTest(){
-        assertEquals(1, aCharacter.getMaxRange());
+        assertEquals(1, aCharacter.getMaxAttackRange());
     }
 }

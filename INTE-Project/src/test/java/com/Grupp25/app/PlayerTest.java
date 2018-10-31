@@ -21,6 +21,36 @@ public class PlayerTest {
         player.levelUp();
         assertEquals(2, player.getLevel());
     }
+    
+    @Test
+    public void LevelUpMaxHpTest() {
+        player.levelUp();
+        assertEquals(105, player.getMaxHp());
+    }
+
+    @Test
+    public void LevelUpStrengthTest() {
+        player.levelUp();
+        assertEquals(17, player.getStrength());
+    }
+
+    @Test
+    public void LevelUpDefenseTest() {
+        player.levelUp();
+        assertEquals(12, player.getDefense());
+    }
+
+    @Test
+    public void LevelUpSpeedTest() {
+        player.levelUp();
+        assertEquals(4, player.getSpeed());
+    }
+
+    @Test
+    public void LevelUpAccuracyTest() {
+        player.levelUp();
+        assertEquals(3, player.getAccuracy());
+    }
 
     @Test
     public void gainXpTest(){

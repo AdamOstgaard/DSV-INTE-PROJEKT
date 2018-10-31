@@ -26,8 +26,8 @@ public class BattleMechanics {
 
     public GameCharacter searchTarget(GameCharacter attacker, Board board) {
         Position attackerPos = board.getItemPosition(attacker);
-        int maxRange = attacker.getMaxRange();
-        int minRange = attacker.getMinRange();
+        int maxRange = attacker.getMaxAttackRange();
+        int minRange = attacker.getMinAttackRange();
         Position hitPos = attackerPos;
         BoardItem hitTarget;
         for (int i = 0; i < minRange; i++) {
@@ -39,7 +39,7 @@ public class BattleMechanics {
                 continue;
             }
             if ((attacker instanceof Player && hitTarget instanceof Enemy)
-                    || attacker instanceof Enemy && hitTarget instanceof Player)
+                    || (attacker instanceof Enemy && hitTarget instanceof Player))
                 return (GameCharacter) hitTarget;
             hitPos = board.getNextPosition(attacker.getDirection(), hitPos);
         }
