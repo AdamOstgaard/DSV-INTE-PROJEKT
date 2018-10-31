@@ -39,6 +39,7 @@ public class BattleMechanicsTest {
         game.addEnemy(new Position(3, 5), enemy1);
         assertEquals(null, battleMechanics.searchTarget(game.getPlayer(), board));
     }
+    
 
     @Test
     public void determineHitTest(){

@@ -29,7 +29,7 @@ public class Player extends GameCharacter {
     public void levelUp() {
         this.setLevel(this.getLevel() + 1);
         this.setMaxHp(this.getMaxHp() + 5);
-        this.setStrenth(this.getStrength() + 2);
+        this.setStrength(this.getStrength() + 2);
         this.setDefense(this.getDefense() + 2);
         this.setSpeed(this.getSpeed() + 1);
         this.setAccuracy(this.getAccuracy() + 1);
