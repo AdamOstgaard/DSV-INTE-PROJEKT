@@ -70,15 +70,11 @@ public class GameCharacterTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void levelUpIllegalArgumentTest(){
+    public void levelUpIllegalArgumentTest() {
         aCharacter.gainXp(-1);
     }
 
-    @Test(expected = Error.class)
-    public void levelUpErrorTest(){
-        aCharacter.gainXp("a");
-    }
-
+    
     @Test
     public void levelUpTest1(){
         aCharacter.gainXp(0);
