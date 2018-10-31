@@ -23,6 +23,18 @@ public class BattleMechanics {
         } else
             return null;
     }
+ 
+    // Tillfällig överskuggning innan random är implementerad i test.
+    public GameCharacter runBattle(GameCharacter attacker, Board board, int i) {
+        GameCharacter target = searchTarget(attacker, board);
+        if (target == null)
+            return null;
+        if (determineHit(attacker, target, i) == true) {
+            determineDamage(attacker, target);
+            return target;
+        } else
+            return null;
+    }
 
     public GameCharacter searchTarget(GameCharacter attacker, Board board) {
         Position attackerPos = board.getItemPosition(attacker);
