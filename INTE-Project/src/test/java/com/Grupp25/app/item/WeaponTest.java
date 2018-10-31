@@ -6,13 +6,16 @@ import java.awt.Image;
 
 import javax.swing.JLabel;
 
+import com.Grupp25.app.board.TileGraphics;
+
 import org.junit.Before;
 import org.junit.Test;
 
 public class WeaponTest {
 
     Weapon weapon;
-    Image icon;
+    TileGraphics icon;
+    
 
     @Before
     public void setUp() {

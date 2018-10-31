@@ -1,6 +1,6 @@
 package com.Grupp25.app.item;
 
-import java.awt.Image;
+import com.Grupp25.app.board.TileGraphics;
 
 public class Weapon extends Item {
 
@@ -8,7 +8,7 @@ public class Weapon extends Item {
     private int minWeaponRange;
     private int maxWeaponRange;
 
-    public Weapon(int damage, int minWeaponRange, int maxWeaponRange, Image icon, String name) {
+    public Weapon(int damage, int minWeaponRange, int maxWeaponRange, TileGraphics icon, String name) {
         super(icon, name, ItemType.WEAPON);
         this.damage = damage;
         this.minWeaponRange = minWeaponRange;
@@ -27,7 +27,7 @@ public class Weapon extends Item {
     public int getMaxWeaponRange() {
         return maxWeaponRange;
     }
-    
+
     public String getName() {
         return this.name;
     }
