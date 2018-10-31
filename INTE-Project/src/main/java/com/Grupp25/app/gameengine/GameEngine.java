@@ -29,7 +29,6 @@ public class GameEngine {
         random = new Random();
         addPlayer(new Position(5, 5), player);
         board.initialize(this);
-        startGame();
     }
 
     public void tick() {
