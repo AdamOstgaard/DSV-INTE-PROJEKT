@@ -20,17 +20,17 @@ public class WeaponTest {
     }
 
     @Test
-    public void TestgetDamage() {
+    public void getDamageTest() {
         assertEquals(50, weapon.getDamage());
     }
 
     @Test
-    public void TestgetMinWeaponRange() {
+    public void getMinWeaponRangeTest() {
         assertEquals(1, weapon.getMinWeaponRange());
     }
 
     @Test
-    public void TestgetMaxWeaponRange() {
+    public void getMaxWeaponRangeTest() {
         assertEquals(5, weapon.getMaxWeaponRange());
     }
 
