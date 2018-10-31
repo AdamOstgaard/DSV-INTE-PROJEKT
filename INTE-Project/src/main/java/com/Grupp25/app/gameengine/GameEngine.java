@@ -71,6 +71,10 @@ public class GameEngine {
         this.boardItemManager.addItem(pos.getX(), pos.getY(), enemy);
     }
 
+    public boolean isRunning() {
+        return timer != null;
+    }
+
     public void keyInput(Character input) {
 
         switch (input.charValue()) {
