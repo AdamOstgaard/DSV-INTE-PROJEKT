@@ -32,19 +32,4 @@ public class Weapon extends Item {
         return this.name;
     }
 
-
-    //oklart om vi kommer använda dessa set-metoder
-    public void setDamage(int damage) {
-        this.damage = damage;
-
-    }
-
-    public void setMinWeaponRange(int minWeaponRange) {
-        this.minWeaponRange = minWeaponRange;
-    }
-
-    public void setMaxWeaponRange(int maxWeaponRange) {
-        this.maxWeaponRange = maxWeaponRange;
-    }
-
 }

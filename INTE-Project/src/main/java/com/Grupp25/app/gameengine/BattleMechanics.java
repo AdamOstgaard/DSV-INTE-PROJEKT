@@ -26,8 +26,8 @@ public class BattleMechanics {
 
     public GameCharacter searchTarget(GameCharacter attacker, Board board) {
         Position attackerPos = board.getItemPosition(attacker);
-        int maxRange = attacker.getMaxRange();
-        int minRange = attacker.getMinRange();
+        int maxRange = attacker.getMaxAttackRange();
+        int minRange = attacker.getMinAttackRange();
         Position hitPos = attackerPos;
         BoardItem hitTarget;
         for (int i = 0; i < minRange; i++) {
@@ -39,7 +39,7 @@ public class BattleMechanics {
                 continue;
             }
             if ((attacker instanceof Player && hitTarget instanceof Enemy)
-                    || attacker instanceof Enemy && hitTarget instanceof Player)
+                    || (attacker instanceof Enemy && hitTarget instanceof Player))
                 return (GameCharacter) hitTarget;
             hitPos = board.getNextPosition(attacker.getDirection(), hitPos);
         }
@@ -47,7 +47,7 @@ public class BattleMechanics {
     }
 
     // Tänker att chansen ska modifieras baserat på statsen.
-    private boolean determineHit(GameCharacter attacker, GameCharacter target) {
+    public boolean determineHit(GameCharacter attacker, GameCharacter target) {
         int dice = rand.nextInt(20) + 1;
         if (dice > 2)
             return true;
@@ -55,16 +55,7 @@ public class BattleMechanics {
             return false;
     }
 
-    // Tillfällig överskuggning innan random är implementerad i test.
-    public boolean determineHit(GameCharacter attacker, GameCharacter target, int slump) {
-        if (slump > 2)
-            return true;
-        else
-            return false;
-    }
-
-    // Tänker att chansen ska modifieras baserat på statsen.
-    private void determineDamage(GameCharacter attacker, GameCharacter target) {
+    public void determineDamage(GameCharacter attacker, GameCharacter target) {
         int dice = rand.nextInt(20) + 1;
         int damageDealt = dice + attacker.getStrength() - target.getDefense();
         if (damageDealt < 1)
@@ -72,12 +63,12 @@ public class BattleMechanics {
         target.setHp(target.getHp() - damageDealt);
     }
 
-    // Tillfällig överskuggning innan random är implementerad i test.
-    public void determineDamage(GameCharacter attacker, GameCharacter target, int slump) {
-        int damageDealt = slump + attacker.getStrength() - target.getDefense();
-        if (damageDealt < 1)
-            damageDealt = 1;
-        target.setHp(target.getHp() - damageDealt);
+    public void setRandom(Random r){
+        this.rand = r;
+    }
+
+    public Random getRandom(){
+        return this.rand;
     }
 
 }

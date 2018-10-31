@@ -1,0 +1,332 @@
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html id="htmlId">
+<head>
+  <title>Coverage Report :: Board</title>
+  <style type="text/css">
+    @import "../../.css/coverage.css";
+  </style>
+</head>
+
+<body>
+<div class="header"></div>
+
+<div class="content">
+<div class="breadCrumbs">
+    [ <a href="../../index.html">all classes</a> ]
+    [ <a href="../index.html">com.Grupp25.app.board</a> ]
+</div>
+
+<h1>Coverage Summary for Class: Board (com.Grupp25.app.board)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">Board</td>
+<td class="coverageStat">
+  <span class="percent">
+    62.5%
+  </span>
+  <span class="absValue">
+    (15/ 24)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    67%
+  </span>
+  <span class="absValue">
+    (69/ 103)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">Board$1</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/ 1)
+  </span>
+</td>
+  </tr>
+<tr>
+  <td class="name"><strong>total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    64%
+  </span>
+  <span class="absValue">
+    (16/ 25)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    67.3%
+  </span>
+  <span class="absValue">
+    (70/ 104)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<div class="sourceCode"><i>1</i>&nbsp;package com.Grupp25.app.board;
+<i>2</i>&nbsp;
+<i>3</i>&nbsp;import com.Grupp25.app.Direction;
+<i>4</i>&nbsp;import com.Grupp25.app.board.Textures.TextureHandler;
+<i>5</i>&nbsp;import com.Grupp25.app.gameengine.*;
+<i>6</i>&nbsp;import java.awt.Color;
+<i>7</i>&nbsp;import java.awt.Dimension;
+<i>8</i>&nbsp;import java.awt.GridLayout;
+<i>9</i>&nbsp;import java.awt.Point;
+<i>10</i>&nbsp;import java.awt.geom.Point2D;
+<i>11</i>&nbsp;import java.util.HashMap;
+<i>12</i>&nbsp;import java.util.Random;
+<i>13</i>&nbsp;import java.awt.event.*;
+<i>14</i>&nbsp;
+<i>15</i>&nbsp;import javax.swing.JFrame;
+<i>16</i>&nbsp;import javax.swing.JLabel;
+<i>17</i>&nbsp;import javax.swing.JLayeredPane;
+<i>18</i>&nbsp;import javax.swing.SwingUtilities;
+<i>19</i>&nbsp;
+<i>20</i>&nbsp;public class Board extends JFrame implements KeyListener {
+<i>21</i>&nbsp;    private GameEngine gameEngine;
+<i>22</i>&nbsp;    private HashMap&lt;Integer, Position&gt; positions;
+<i>23</i>&nbsp;    private int width;
+<i>24</i>&nbsp;    private int height;
+<i>25</i>&nbsp;    private Random random;
+<i>26</i>&nbsp;    private JLayeredPane layeredPane;
+<i>27</i>&nbsp;    public static final long serialVersionUID = 1L;
+<i>28</i>&nbsp;    public static final int DEFAULT_TILE_SIZE = 30;
+<i>29</i>&nbsp;
+<i>30</i>&nbsp;    public Board() {
+<b class="fc"><i>31</i>&nbsp;        this(25, 25);</b>
+<b class="fc"><i>32</i>&nbsp;    }</b>
+<i>33</i>&nbsp;
+<b class="fc"><i>34</i>&nbsp;    public Board(int width, int height) {</b>
+<b class="fc"><i>35</i>&nbsp;        this.height = height;</b>
+<b class="fc"><i>36</i>&nbsp;        this.width = width;</b>
+<i>37</i>&nbsp;
+<b class="fc"><i>38</i>&nbsp;        positions = new HashMap&lt;Integer, Position&gt;();</b>
+<b class="fc"><i>39</i>&nbsp;        random = new Random();</b>
+<b class="fc"><i>40</i>&nbsp;        layeredPane = new JLayeredPane();</b>
+<b class="fc"><i>41</i>&nbsp;        layeredPane.setLayout(null);</b>
+<i>42</i>&nbsp;
+<b class="fc"><i>43</i>&nbsp;        this.setLayout(new GridLayout(1, 1));</b>
+<b class="fc"><i>44</i>&nbsp;        this.setVisible(true);</b>
+<b class="fc"><i>45</i>&nbsp;        this.add(layeredPane);</b>
+<b class="fc"><i>46</i>&nbsp;        this.setMinimumSize(new Dimension(DEFAULT_TILE_SIZE * width, DEFAULT_TILE_SIZE * height));</b>
+<b class="fc"><i>47</i>&nbsp;        this.setPreferredSize(new Dimension(DEFAULT_TILE_SIZE * width, DEFAULT_TILE_SIZE * height));</b>
+<b class="fc"><i>48</i>&nbsp;        addKeyListener(this);</b>
+<i>49</i>&nbsp;
+<b class="fc"><i>50</i>&nbsp;        generatePositions();</b>
+<b class="fc"><i>51</i>&nbsp;        generateTiles();</b>
+<b class="fc"><i>52</i>&nbsp;    }</b>
+<i>53</i>&nbsp;
+<i>54</i>&nbsp;    public void initialize(GameEngine g) {
+<b class="fc"><i>55</i>&nbsp;        this.gameEngine = g;</b>
+<b class="fc"><i>56</i>&nbsp;    }</b>
+<i>57</i>&nbsp;
+<i>58</i>&nbsp;    private void generatePositions() {
+<b class="fc"><i>59</i>&nbsp;        for (int i = 0; i &lt; width; i++) {</b>
+<b class="fc"><i>60</i>&nbsp;            for (int j = 0; j &lt; height; j++) {</b>
+<b class="fc"><i>61</i>&nbsp;                Position pos = new Position(i, j);</b>
+<b class="fc"><i>62</i>&nbsp;                positions.put(pos.hashCode(), pos);</b>
+<i>63</i>&nbsp;            }
+<i>64</i>&nbsp;        }
+<b class="fc"><i>65</i>&nbsp;    }</b>
+<i>66</i>&nbsp;
+<i>67</i>&nbsp;    private void generateTiles() {
+<b class="fc"><i>68</i>&nbsp;        TextureHandler textureHandler = new TextureHandler();</b>
+<b class="fc"><i>69</i>&nbsp;        positions.values().forEach(p -&gt; {</b>
+<b class="fc"><i>70</i>&nbsp;            if (random.nextBoolean()) {</b>
+<b class="fc"><i>71</i>&nbsp;                return;</b>
+<i>72</i>&nbsp;            }
+<i>73</i>&nbsp;
+<b class="fc"><i>74</i>&nbsp;            Tile t = new Tile(1, false, new TileGraphics(new Color(0, 200, 0), textureHandler.getGrassTexture()));</b>
+<b class="fc"><i>75</i>&nbsp;            p.setTile(t);</b>
+<i>76</i>&nbsp;
+<b class="fc"><i>77</i>&nbsp;            TileGraphics tileGraphics = p.getTile().getGraphics();</b>
+<b class="fc"><i>78</i>&nbsp;            addGraphics(p, tileGraphics, 1);</b>
+<b class="fc"><i>79</i>&nbsp;        });</b>
+<b class="fc"><i>80</i>&nbsp;        repaint();</b>
+<b class="fc"><i>81</i>&nbsp;    }</b>
+<i>82</i>&nbsp;
+<i>83</i>&nbsp;    public void addItem(int x, int y, BoardItem item) {
+<b class="fc"><i>84</i>&nbsp;        Position pos = getPosition(x, y);</b>
+<b class="fc"><i>85</i>&nbsp;        if (pos == null) {</b>
+<b class="nc"><i>86</i>&nbsp;            return;</b>
+<i>87</i>&nbsp;        }
+<b class="fc"><i>88</i>&nbsp;        if (pos.getBoardItem() == null) {</b>
+<b class="fc"><i>89</i>&nbsp;            pos.setBoardItem(item);</b>
+<b class="fc"><i>90</i>&nbsp;            addGraphics(pos, item.getGraphics(), 4);</b>
+<i>91</i>&nbsp;        }
+<b class="fc"><i>92</i>&nbsp;        repaint();</b>
+<b class="fc"><i>93</i>&nbsp;    }</b>
+<i>94</i>&nbsp;
+<i>95</i>&nbsp;    public void removeItem(BoardItem item) {
+<b class="nc"><i>96</i>&nbsp;        Position p = getItemPosition(item);</b>
+<b class="nc"><i>97</i>&nbsp;        if (p != null) {</b>
+<b class="nc"><i>98</i>&nbsp;            p.setBoardItem(null);</b>
+<i>99</i>&nbsp;        }
+<b class="nc"><i>100</i>&nbsp;        layeredPane.remove(item.getGraphics());</b>
+<b class="nc"><i>101</i>&nbsp;        repaint();</b>
+<b class="nc"><i>102</i>&nbsp;    }</b>
+<i>103</i>&nbsp;
+<i>104</i>&nbsp;    public void updateGraphics(BoardItem item, JLabel newGraphics) {
+<b class="nc"><i>105</i>&nbsp;        Position p = getItemPosition(item);</b>
+<b class="nc"><i>106</i>&nbsp;        newGraphics.setBounds((int) getAbsoluteCoordinates(p).getX(), (int) getAbsoluteCoordinates(p).getY(),</b>
+<i>107</i>&nbsp;                DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE);
+<b class="nc"><i>108</i>&nbsp;        layeredPane.remove(item.getGraphics());</b>
+<b class="nc"><i>109</i>&nbsp;        layeredPane.add(newGraphics);</b>
+<b class="nc"><i>110</i>&nbsp;        newGraphics.setVisible(true);</b>
+<b class="nc"><i>111</i>&nbsp;        item.setGraphics(newGraphics);</b>
+<b class="nc"><i>112</i>&nbsp;        repaint();</b>
+<b class="nc"><i>113</i>&nbsp;    }</b>
+<i>114</i>&nbsp;
+<i>115</i>&nbsp;    private void addGraphics(Position p, JLabel graphics, int zIndex) {
+<b class="fc"><i>116</i>&nbsp;        graphics.setBounds((int) getAbsoluteCoordinates(p).getX(), (int) getAbsoluteCoordinates(p).getY(),</b>
+<i>117</i>&nbsp;                DEFAULT_TILE_SIZE, DEFAULT_TILE_SIZE);
+<i>118</i>&nbsp;
+<b class="fc"><i>119</i>&nbsp;        layeredPane.add(graphics, zIndex);</b>
+<b class="fc"><i>120</i>&nbsp;        graphics.setToolTipText(&quot;test&quot;);</b>
+<b class="fc"><i>121</i>&nbsp;        graphics.setVisible(true);</b>
+<b class="fc"><i>122</i>&nbsp;    }</b>
+<i>123</i>&nbsp;
+<i>124</i>&nbsp;    public void clearPosition(int x, int y) {
+<b class="nc"><i>125</i>&nbsp;        Position pos = getPosition(x, y);</b>
+<b class="nc"><i>126</i>&nbsp;        if (pos != null) {</b>
+<b class="nc"><i>127</i>&nbsp;            BoardItem item = pos.getBoardItem();</b>
+<b class="nc"><i>128</i>&nbsp;            if (item != null) {</b>
+<i>129</i>&nbsp;
+<i>130</i>&nbsp;            }
+<b class="nc"><i>131</i>&nbsp;            pos.setBoardItem(null);</b>
+<i>132</i>&nbsp;        }
+<b class="nc"><i>133</i>&nbsp;    }</b>
+<i>134</i>&nbsp;
+<i>135</i>&nbsp;    public void moveItem(BoardItem item, Direction direction) {
+<b class="fc"><i>136</i>&nbsp;        Position p = getItemPosition(item);</b>
+<b class="fc"><i>137</i>&nbsp;        Position nextPosition = getNextPosition(direction, p);</b>
+<b class="fc"><i>138</i>&nbsp;        if (nextPosition != null &amp;&amp; nextPosition.getBoardItem() == null) {</b>
+<b class="fc"><i>139</i>&nbsp;            p.setBoardItem(null);</b>
+<b class="fc"><i>140</i>&nbsp;            nextPosition.setBoardItem(item);</b>
+<b class="fc"><i>141</i>&nbsp;            addGraphics(nextPosition, item.getGraphics(), 4);</b>
+<i>142</i>&nbsp;        }
+<b class="fc"><i>143</i>&nbsp;    }</b>
+<i>144</i>&nbsp;
+<i>145</i>&nbsp;    public Position getItemPosition(BoardItem item) {
+<b class="fc"><i>146</i>&nbsp;        for (Position p : positions.values()) {</b>
+<b class="fc"><i>147</i>&nbsp;            if (p.getBoardItem() != null &amp;&amp; p.getBoardItem() == item) {</b>
+<b class="fc"><i>148</i>&nbsp;                return p;</b>
+<i>149</i>&nbsp;            }
+<b class="fc"><i>150</i>&nbsp;        }</b>
+<b class="nc"><i>151</i>&nbsp;        return null;</b>
+<i>152</i>&nbsp;    }
+<i>153</i>&nbsp;
+<i>154</i>&nbsp;    public int getPositionsSize() {
+<b class="nc"><i>155</i>&nbsp;        return positions.size();</b>
+<i>156</i>&nbsp;    }
+<i>157</i>&nbsp;
+<i>158</i>&nbsp;    public BoardItem getItemAt(int x, int y) {
+<i>159</i>&nbsp;        BoardItem item;
+<b class="fc"><i>160</i>&nbsp;        item = getPosition(x, y).getBoardItem();</b>
+<b class="fc"><i>161</i>&nbsp;        return item;</b>
+<i>162</i>&nbsp;    }
+<i>163</i>&nbsp;
+<i>164</i>&nbsp;    public Position getPosition(int x, int y) throws IllegalArgumentException {
+<b class="fc"><i>165</i>&nbsp;        if (!checkBoundries(x, y)) {</b>
+<b class="fc"><i>166</i>&nbsp;            return null;</b>
+<i>167</i>&nbsp;        }
+<b class="fc"><i>168</i>&nbsp;        return positions.get(new Position(x, y).hashCode());</b>
+<i>169</i>&nbsp;    }
+<i>170</i>&nbsp;
+<i>171</i>&nbsp;    private boolean checkBoundries(int x, int y) {
+<b class="fc"><i>172</i>&nbsp;        return x &lt; width &amp;&amp; y &lt; height &amp;&amp; x &gt;= 0 &amp;&amp; y &gt;= 0;</b>
+<i>173</i>&nbsp;    }
+<i>174</i>&nbsp;
+<i>175</i>&nbsp;    private Point2D getAbsoluteCoordinates(Position p) {
+<b class="fc"><i>176</i>&nbsp;        return new Point(p.getX() * DEFAULT_TILE_SIZE, p.getY() * DEFAULT_TILE_SIZE);</b>
+<i>177</i>&nbsp;    }
+<i>178</i>&nbsp;
+<i>179</i>&nbsp;    public int getBoardWidth(){
+<b class="nc"><i>180</i>&nbsp;        return this.width;</b>
+<i>181</i>&nbsp;    }
+<i>182</i>&nbsp;
+<i>183</i>&nbsp;    public int getBoardHeight(){
+<b class="nc"><i>184</i>&nbsp;        return this.height;</b>
+<i>185</i>&nbsp;    }
+<i>186</i>&nbsp;
+<i>187</i>&nbsp;
+<i>188</i>&nbsp;
+<i>189</i>&nbsp;    // Listeners
+<i>190</i>&nbsp;
+<i>191</i>&nbsp;    @Override
+<i>192</i>&nbsp;    public void keyPressed(KeyEvent e) {
+<b class="nc"><i>193</i>&nbsp;    }</b>
+<i>194</i>&nbsp;
+<i>195</i>&nbsp;    @Override
+<i>196</i>&nbsp;    public void keyReleased(KeyEvent e) {
+<b class="nc"><i>197</i>&nbsp;        gameEngine.keyInput(e.getKeyChar());</b>
+<b class="nc"><i>198</i>&nbsp;    }</b>
+<i>199</i>&nbsp;
+<i>200</i>&nbsp;    @Override
+<i>201</i>&nbsp;    public void keyTyped(KeyEvent e) {
+<i>202</i>&nbsp;
+<b class="nc"><i>203</i>&nbsp;    }</b>
+<i>204</i>&nbsp;
+<i>205</i>&nbsp;    public Position getNextPosition(Direction direction, Position p) {
+<i>206</i>&nbsp;        try {
+<b class="fc"><i>207</i>&nbsp;            switch (direction) {</b>
+<i>208</i>&nbsp;            case east:
+<b class="fc"><i>209</i>&nbsp;                return getPosition(p.getX() + 1, p.getY());</b>
+<i>210</i>&nbsp;            case west:
+<b class="fc"><i>211</i>&nbsp;                return getPosition(p.getX() - 1, p.getY());</b>
+<i>212</i>&nbsp;            case north:
+<b class="nc"><i>213</i>&nbsp;                return getPosition(p.getX(), p.getY() - 1);</b>
+<i>214</i>&nbsp;            case south:
+<b class="nc"><i>215</i>&nbsp;                return getPosition(p.getX(), p.getY() + 1);</b>
+<i>216</i>&nbsp;            default:
+<b class="nc"><i>217</i>&nbsp;                return null;</b>
+<i>218</i>&nbsp;            }
+<b class="nc"><i>219</i>&nbsp;        } catch (Exception e) {</b>
+<b class="nc"><i>220</i>&nbsp;            return null;</b>
+<i>221</i>&nbsp;        }
+<i>222</i>&nbsp;    }
+<i>223</i>&nbsp;}
+</div>
+</div>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2018-10-31 19:07</div>
+</div>
+</body>
+</html>
